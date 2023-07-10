@@ -89,7 +89,7 @@ const FormProv = ({addData, editData, editPRov, isOpen, closeModal, title}) => {
 
   return (
         <>
-            <div className={`modal-container ${isOpen &&"is-Open" }`} onClick={close}>
+            <div className={` modal modal-container ${isOpen &&"is-Open" }`} onClick={close}>
                 <div className="modal-dialog modal-dialog-scrollable">
                     <div className="modal-content">
                         <div className="modal-body" onClick={handleModalClick}>

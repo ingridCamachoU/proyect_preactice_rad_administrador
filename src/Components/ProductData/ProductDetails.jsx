@@ -39,12 +39,12 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                 <i className="fa-solid fa-xmark"></i>
                             </button>
 
-                            <section className="">
-                                <h2 className="pb-3 mx-5">Detalles del producto</h2>
-                                <div className="border p-4">
+                            <section className="m-4">
+                                <h2 className="mb-5">Detalles del producto</h2>
+                                <div className="border p-3 details">
                                     <div className="row g-3">
                                         <div className="col-sm-4">
-                                            <p className="text" name='code' 
+                                            <p className="text " name='code' 
                                             value={formData.code} onChange={handleChange}>Código </p>
                                             <p>{formData.code}</p>
                                         </div>
@@ -80,33 +80,38 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                 </div>   
                             </section> 
 
-                            <section className="mt-5">
-                                <h4 className="mx-5 pb-3">Cotizaciones</h4>
-                                <table className="table border ">
-                                <thead className="table-light">
-                                    <tr>
-                                        <th scope="col">Proveedor</th>
-                                        <th scope="col">Precio</th>
-                                        <th scope="col">Descripción</th>
-                                    </tr>
-                                </thead>
 
-                                <tbody>
-                                    {   
-                                        datasQuotation.length === 0 ? <tr><td colSpan="6" className="text-center">No hay cotizaciones</td></tr>
-                                        :datasQuotation.map( quotation => (
-                                            <tr key={quotation.id}>
-                                                <td>{quotation.provider.name}</td>
-                                                <td>{quotation.price}</td>
-                                                <td>Descripcion</td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody> 
+                            <div className="row tabla mt-2">
+                                <div className="col table-responsive">
+                                    <section className="mt-3">
+                                        <h4 className="mb-4">Listado de Cotizaciones</h4>
+                                        <table className="table border ">
+                                            <thead className="table-light">
+                                                <tr>
+                                                    <th scope="col">Proveedor</th>
+                                                    <th scope="col">Precio</th>
+                                                    <th scope="col">Descripción</th>
+                                                </tr>
+                                            </thead>
 
-                            </table>
+                                            <tbody>
+                                                {   
+                                                    datasQuotation.length === 0 ? <tr><td colSpan="6" className="text-center">No hay cotizaciones</td></tr>
+                                                    :datasQuotation.map( quotation => (
+                                                        <tr key={quotation.id}>
+                                                            <td>{quotation.provider.name}</td>
+                                                            <td>{quotation.price}</td>
+                                                            <td>Descripcion</td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody> 
+                                        </table>
+                                    </section>
+                                </div>
+                            </div>
 
-                            </section>
+                            
 
                             
                         </div>

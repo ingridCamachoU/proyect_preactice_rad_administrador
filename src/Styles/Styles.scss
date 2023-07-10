@@ -192,6 +192,7 @@
 .addBtn{
     width: 40px;
     height: 40px;
+    box-shadow: var(--box-shadow-conten-light);
 }
 
 .search{
@@ -202,7 +203,7 @@
 .modal-container{
     position: fixed;
     top: 0; left: 0;
-    background: rgba(232, 230, 230, 0.792);
+    background: rgba(100, 99, 99, 0.792);
     width: 100%;
     min-height: 100vh;
     place-items: center;
@@ -217,7 +218,7 @@
     }
 
     .modal-body{
-        background-color: var(--body-color-second);
+        background-color: #c4c3c3;
         box-shadow: var(--box-shadow-conten);
         width: 100%;
         border-radius: var(--mb-1);
@@ -235,6 +236,11 @@
     &.is-Open{
         display:grid;
     }
+}
+
+.details{
+    background: #fbfbfb;
+    box-shadow: var(--box-shadow-light);
 }
 
 .text{

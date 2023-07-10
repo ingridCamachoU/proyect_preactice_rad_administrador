@@ -200,6 +200,7 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
 
                         <div className="row tabla mt-2">
                             <div className="col table-responsive">
+                                <h4 className="mb-4">Registro de Cotizaciones</h4>
                                 <table className="table">
                                     <thead className="table-light">
                                         <tr>

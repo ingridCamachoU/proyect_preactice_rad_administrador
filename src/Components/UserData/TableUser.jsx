@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { DarkModeContext } from "../../Context/DarkModeContext";
 
 const TableUser = ({dataQ}) => {
+
+    const {darkMode} = useContext(DarkModeContext);
 
     const handleClick =(item)=>
     {
@@ -14,7 +18,7 @@ const TableUser = ({dataQ}) => {
         <>
             <div className="row tabla">
                 <div className="col table-responsive">
-                    <table className="table">
+                    <table className={darkMode ? `table dark` : `table light`}>
                         <thead className="table-light">
                         <tr>
                             <th scope="col">Proveedor</th>
