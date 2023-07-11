@@ -19,20 +19,20 @@ const Nabvar = () => {
   return (
         <nav className="navbar bg-body-tertiary d-flex">
             <div className="container-fluid d-flex">
-            <div className="d-flex ContLogo">
-                <div className='contenidoLogo'>
-                    <img className="img-fluid logo mx-2" src={logo} alt="Logo"/>
+                <div className="d-flex ContLogo">
+                    <div className='contenidoLogo'>
+                        <img className="img-fluid logo mx-2" src={logo} alt="Logo"/>
+                    </div>
+                    <div className="d-flex flex-column justify-content-end user">
+                        <h4>William</h4>
+                        <h6>Administrador</h6>
+                    </div>
                 </div>
-                <div className="d-flex flex-column justify-content-end user">
-                    <h4>William</h4>
-                    <h6>Administrador</h6>
-                </div>
-            </div>
                 <form className="search" role="search">
                     <input className="form-control me-2 
                     search"  type="search" placeholder="Search" hearia-label="Search"/>
 
-                     <div className={`nav-items ${isOpenToggle &&"openToggle" }`}>
+                    <div className={`nav-items ${isOpenToggle &&"openToggle" }`}>
                         <Link to='/OrdersData' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Pedidos</Link>
                         <Link to='/IndexProd' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Productos</Link>
                         <Link to='/IndexUser' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Clientes</Link>
@@ -43,17 +43,15 @@ const Nabvar = () => {
                         <span></span>
                         <span></span>
                         <span></span>
-                     </div>
-                     
+                    </div>
+                        
                     <div className="btn btn-link align-items-center toogleDark">
                         <img src={darkMode ? 
                         (sun) : (moon)} alt="Lightswitch on" onClick={handleClick}/>          
                     </div >
 
-                </form>
-                
-            </div>
-            
+                </form>         
+            </div>     
         </nav>
     )
 }
