@@ -41,8 +41,8 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
 
                             <section className="m-4">
                                 <h2 className="mb-5">Detalles del producto</h2>
-                                <div className="border p-3 details">
-                                    <div className="row g-3">
+                                <div className="border p-4 px-5 details">
+                                    <div className="row g-5">
                                         <div className="col-sm-4">
                                             <p className="text " name='code' 
                                             value={formData.code} onChange={handleChange}>Código </p>
