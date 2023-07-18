@@ -101,8 +101,7 @@
         }
        
         .toogleDark{
-            margin:  0 .4em;
-            box-shadow: 2px -4px 10px -7px rgb(141, 139, 139), 2px 4px 10px -7px rgb(141, 139, 139);
+            margin:  0 .3em;
             border-radius: 50%;
             width: 3em;
             padding: 0;
@@ -352,6 +351,7 @@
         font-size: var(--h2-font-size);
         padding-top: 10%;
         transition: 0.3s ease all;
+        background: #1d2768;
 
         &.openToggle{
             display: grid;
