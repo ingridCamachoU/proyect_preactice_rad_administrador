@@ -19,7 +19,7 @@ const IndexProd = () => {
 
     const {darkMode} = useContext(DarkModeContext);
 
-    const urlProduct = "http://localhost:8000/api/v1/products/";
+    const urlProduct = "http://localhost:8000/api/v1/product/";
 
     /* Load Data product*/    
   const loadDatasProduct = async () => {
@@ -30,8 +30,28 @@ const IndexProd = () => {
             headers: { },
             data : datasProduct
         };
-        const response = await axios(config)
-        setDatasProduct(response.data);
+        try {
+            const response = await axios(config)
+            setDatasProduct(response.data);
+
+        } catch (error) {
+            console.log(error);
+            if (error.code === 'ERR_BAD_REQUEST'){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error 404',
+                    text: 'Página no encontrada!',
+                })
+            }
+            if (error.code === 'ERR_NETWORK'){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal, pero no te preocupes, no es tu culpa. Vamos a intentarlo de nuevo.!',
+                })
+            }
+            
+        }
     };
         
     useEffect(() => {
