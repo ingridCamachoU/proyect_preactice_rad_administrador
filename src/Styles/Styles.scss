@@ -108,13 +108,16 @@
             img{
                 width: 100%;
                 color: var(--btn-color-light);
-
             }
         }
-       
     }
 }
 
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 .container-xxl{
     display: flex;
     
@@ -129,10 +132,12 @@
 .contenedor{
     width: 100%;
     min-height: 100vh;
-    margin: var(--mb-1);
     margin-bottom: 0;
+    margin-top: 0;
    flex-wrap: wrap; 
    overflow: hidden;
+   padding: 0 1%;
+   box-shadow: var(--box-shadow-light);
    &.light{
     background: var(--body-color-second);
     color: var(--text-color-light);
@@ -152,20 +157,25 @@
     }
   
    .tabla {
-    width: 95%;
-    margin-left: 3%;
-    
+        width: 100%;
+        padding-left: 1%;
     }
     table{
         overflow-x: auto;
         white-space: nowrap;
         box-shadow: var(--box-shadow-light);
+        text-align: center;
         .eye{
             color: var(--body-color-second);
         }
         th{
             font-family: var(--body-font);
             font-weight: var(--font-semi-bold);
+            border: 0.1px solid #eef0f2;
+        }
+        td{
+            text-align: center;
+            border: 0.1px solid #eef0f2;
         }
  
         &.light{
@@ -189,8 +199,8 @@
 }
 
 .addBtn{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     box-shadow: var(--box-shadow-conten-light);
 }
 
@@ -202,7 +212,7 @@
 .modal-container{
     position: fixed;
     top: 0; left: 0;
-    background: rgba(100, 99, 99, 0.792);
+    background: rgba(170, 170, 170, 0.792);
     width: 100%;
     min-height: 100vh;
     place-items: center;
@@ -210,6 +220,7 @@
 
     .modal-content{
         margin-top: var(--mb-2-5);
+        width: 100%;
     }
 
     .modal-contents{
@@ -217,7 +228,7 @@
     }
 
     .modal-body{
-        background-color: #c4c3c3;
+        background-color: #fefefe;
         box-shadow: var(--box-shadow-conten);
         width: 100%;
         border-radius: var(--mb-1);
@@ -274,28 +285,28 @@
 }
 
 .menu{
-    width: 15%; min-height: 100vh;    
+    width: 12%; min-height: 100vh;    
     display: flex;
     box-shadow: var(--box-shadow-conten-menu);
     &.light{
-        background: var(--body-color-menu);
         color: var(--text-color-light);
-    }
-    &.dark{
-        background: var(--body-color-menu-dark);
     }
 
     .items{
         margin-top: var(--mb-2);
         width: 100%;
-        gap: var(--mb-2-5);
+        padding: 0;
+        gap: 10%;
+        li{
+            list-style: none;
+        }
         .item{
             text-decoration: none;
             color: var(--text-color);
             padding: var(--mb-0-5);
-            margin-left: .6rem;
+            width: 100%;
             &:hover{
-                background: var(--btn-color-light);
+                background: #adb5bd;
             }
             &.light{
                 color: var(--text-color);    
@@ -347,11 +358,19 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        padding-left: 40%;
+        justify-content:center;
         font-size: var(--h2-font-size);
         padding-top: 10%;
         transition: 0.3s ease all;
         background: #1d2768;
+
+        ul{
+            padding: 0;
+        }
+
+        li{
+            padding-bottom: 20%;
+        }
 
         &.openToggle{
             display: grid;
@@ -456,16 +475,19 @@
              width: 100%;
         }
     }
-    .toogleDark{
-        display: none;
-    }
 }
 
 @media(max-width:280px){
     .search{
-        display: none;
+        justify-content: end;
+        input{
+           display: none;
+        }
+        img{
+            width: 70%;
+        }
     }
-
+    
     .modal-container{
         min-width: 100%;
         border-radius: 0;

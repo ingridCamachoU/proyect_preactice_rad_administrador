@@ -50,9 +50,14 @@ const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModa
                     <tr>
                         <th scope="col">Código</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Transmisión</th>
                         <th scope="col">Precio</th>
+                        <th scope="col">% Ganancia</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Imagenes</th>
+                        <th scope="col">Descripción</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -60,13 +65,18 @@ const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModa
                 <tbody>
                     {   
                         datasProduct.length === 0 ? <tr><td colSpan="6" className="text-center">No hay datos</td></tr>
-                        :datasProduct.map( product => (
-                            <tr key={product.id}>
+                        :(datasProduct.map)( product => (
+                            <tr  key={product.id}>
                                 <td>{product.code}</td>
                                 <td>{product.name}</td>
-                                <td>{product.description}</td>
+                                <td>{product.category.name}</td>
+                                <td>{product.mark_model.name} ({product.mark_model.mark.name})</td>
+                                <td>{product.transmission}</td>
                                 <td>{product.price}</td>
+                                <td>{product.profit}</td>
                                 <td>{product.stock}</td>
+                                <td>{product.images}</td>
+                                <td>{product.description}</td>
                                 <td>
                                     <button type="button" className="btn btn-success m-1" 
                                     onClick={()=> {handleClick(product)}}>
@@ -83,8 +93,7 @@ const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModa
                         ))
                     }
                 </tbody>    
-        </table>
-
+            </table>
             </div>
         </div>
         

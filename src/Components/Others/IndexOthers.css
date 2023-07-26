@@ -1,0 +1,25 @@
+
+.others{
+    margin-top: 3em;
+}
+
+.title{
+    text-align: center;
+    justify-content:center;
+    padding: 1em 0;
+    gap: 1em;
+    background: #ededed;
+}
+
+.btn{
+    padding: 1px 6px;
+}
+
+i{
+    font-size: 14px;
+}
+
+.addBtn{
+    padding: 0;
+    margin: 0;
+}

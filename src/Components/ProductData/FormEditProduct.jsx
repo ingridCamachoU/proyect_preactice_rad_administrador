@@ -2,15 +2,20 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import Swal from 'sweetalert2';
 
-const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOpenModalEditProduct, closeModalEditProduct,openModalCreateQuotation, datasQuotation, deletequotation}) => {
+const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOpenModalEditProduct, closeModalEditProduct,openModalCreateQuotation, datasQuotation, deletequotation, datasModels, datasCategories}) => {
 
     const initialForm ={
         "code": "",
         "name": "",
         "description": "",
         "price": "",
-        "stock": ""
-    };
+        "stock": "",
+        "profit": "30",
+        "category": "",
+        "transmission": "",
+        "mark_model":"",
+        "images": [],
+        };
 
     const [formData, handleChange, handleReset, setFormData] = useForm (initialForm);
   
@@ -55,7 +60,19 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
 
     useEffect(()=>{
         if( editDataProduct !== null){ 
-            setFormData(editDataProduct);
+            const copyData = {
+                "code": editDataProduct?.code,
+                "name": editDataProduct?.name,
+                "description": editDataProduct?.description,
+                "price": editDataProduct?.price,
+                "stock": editDataProduct?.stock,
+                "profit": editDataProduct?.profit,
+                "category": editDataProduct?.category?.id,
+                "transmission": editDataProduct?.transmission,
+                "mark_model": editDataProduct?.mark_model?.id,
+                "images": editDataProduct?.images,
+            }
+            setFormData(copyData);
         } else{
             setFormData(initialForm);
         }
@@ -68,7 +85,7 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
         setErrors(err)
 
         if (Object.keys(err).length === 0){
-            if (formData.code !== '' && formData.name !== ''  && formData.description !== '' && formData.price !== '' && formData.stock !== '' ){
+            if (formData.code !== '' && formData.name !== ''  && formData.description !== '' && formData.price !== '' && formData.stock !== '' && formData.category !== ''){
                  if (editDataProduct !== null ){
                     editProduct(formData);
                     setFormData(initialForm);
@@ -98,6 +115,14 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
         closeModalEditProduct();
     };
 
+    const add=(e)=>{
+        const {name, value}= e.target;
+        setFormData({
+            ...formData, 
+            [name]:[value],
+        });
+    }
+    
     const handleClickDelete =(quotation)=>
     {
         Swal.fire({
@@ -118,9 +143,8 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                 deletequotation(quotation);
             }
         })
-        
     };
-    
+
   return (
         <>
             <div className={`modal modal-container ${isOpenModalEditProduct &&"is-Open" }`} onClick={close}>
@@ -134,7 +158,7 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                         <form className=" p-3" onSubmit={handleSubmit} onReset={handleReset}>
                             <h2>Editar Producto</h2>
                             <div className="row g-3 mt-4">
-                                <div className="col-sm-6">
+                                <div className="col-sm-4">
                                     <label className="form-label">Código </label>
                                     <input 
                                     className="form-control" 
@@ -144,7 +168,7 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                                     {errors.code && <p className="text-danger">{errors.code}</p>}
                                 </div>
 
-                                <div className="col-sm-6">
+                                <div className="col-sm-4">
                                     <label  className="form-label">Nombre</label>
                                     <input 
                                     className="form-control" 
@@ -153,10 +177,20 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                                     onChange={handleChange} />
                                     {errors.name && <p className="text-danger">{errors.name}</p>}
                                 </div>
-                            </div> 
 
+                                <div className="col-sm-4">
+                                    <label  className="form-label">Categoria</label>
+                                    <select className="form-control" name="category" onChange={handleChange} value={formData.category}>
+                                        <option ></option>
+                                        {datasCategories.map(category => (
+                                            <option key={category.id} value={category.id}>{category.name}</option>
+                                            ))}
+                                    </select>
+                                </div>
+                            </div> 
+       
                             <div className="row g-3 mt-2">
-                                <div className="col-sm-6">
+                                <div className="col-sm-4">
                                     <label  className="form-label">Precio</label>
                                     <input 
                                     className="form-control"
@@ -166,7 +200,17 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                                     {errors.price && <p className="text-danger">{errors.price}</p>}
                                 </div>
 
-                                <div className="col-sm-6">
+                                <div className="col-sm-4">
+                                    <label className="form-label">% Ganancia</label>
+                                    <input  
+                                    className="form-control" 
+                                    type="number"  required name='profit'   
+                                    value={formData.profit} 
+                                    onChange={handleChange}/>
+                                    {errors.profit && <p className="text-danger">{errors.profit}</p>}
+                                </div>
+
+                                <div className="col-sm-4">
                                     <label className="form-label">Stock</label>
                                     <input  
                                     className="form-control" 
@@ -178,6 +222,36 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                             </div> 
 
                             <div className="row g-3 mt-2">
+                                <div className="col-sm-6">
+                                    <label  className="form-label">Modelo</label>
+                                    <select className="form-control" name="mark_model" onChange={handleChange} value={formData.mark_model}>
+                                        <option ></option>
+                                        {datasModels.map(mark_model => (
+                                            <option key={mark_model.id} value={mark_model.id} >{mark_model.name} ({mark_model.mark.name})</option>
+                                            ))}  
+                                    </select>
+                                </div>
+
+                                 <div className="col-sm-6">
+                                    <label  className="form-label">Transmisión</label>
+                                    <select className="form-control" name="transmission" onChange={handleChange} value={formData.transmission}>
+                                        <option value=""></option>
+                                        <option value="Automático">Automático</option>
+                                        <option value="Mecánico">Mecánico</option>
+                                    </select>
+                                </div>
+                            
+                            </div> 
+
+                            <div className="row g-3 mt-2">
+                                <div className="col-sm-6">
+                                    <label className="form-label">Imagenes</label>
+                                    <textarea 
+                                    className="form-control" 
+                                    type="text" name='images'   
+                                    value={formData.images} 
+                                    onChange={add}/>
+                                </div>
                                 <div className="col-sm-6">
                                     <label className="form-label">Descripción </label>
                                     <textarea 
@@ -220,6 +294,7 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                                                     <td>{quotation.price}</td>
                                                     <td>Descripcion</td>
                                                     <td>
+                                        
                                                         <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDelete(quotation.id)}>
                                                             <i className="fa-solid fa-trash"></i>
                                                         </button>

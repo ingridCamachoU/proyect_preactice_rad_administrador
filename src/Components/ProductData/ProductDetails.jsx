@@ -8,8 +8,13 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
         "name": "",
         "description": "",
         "price": "",
-        "stock": ""
-    };
+        "stock": "",
+        "profit": "30",
+        "category": "",
+        "transmission": "",
+        "mark_model":"",
+        "images": [],
+        };
 
     const [formData, handleChange, handleReset, setFormData] = useForm (initialForm);
 
@@ -22,7 +27,19 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
 
     useEffect(()=>{
         if( editDataProduct !== null){ 
-            setFormData(editDataProduct);
+            const copyData = {
+                "code": editDataProduct?.code,
+                "name": editDataProduct?.name,
+                "description": editDataProduct?.description,
+                "price": editDataProduct?.price,
+                "stock": editDataProduct?.stock,
+                "profit": editDataProduct?.profit,
+                "category": editDataProduct?.category?.name,
+                "transmission": editDataProduct?.transmission,
+                "mark_model": editDataProduct?.mark_model?.name,
+                "images": editDataProduct?.images,
+            }
+            setFormData(copyData);
         } else{
             setFormData(initialForm);
         }
@@ -31,7 +48,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
 
   return (
         <>
-            <div className={`modal modal-container ${isOpenProductDetailsModal &&"is-Open" }`} onClick={close}>
+             <div className={`modal modal-container ${isOpenProductDetailsModal &&"is-Open" }`} onClick={close}>
                 <div className="modal-dialog modal-dialog-scrollable">
                     <div className="modal-contents">
                         <div className="modal-body " onClick={handleModalClick}>
@@ -39,44 +56,83 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                 <i className="fa-solid fa-xmark"></i>
                             </button>
 
-                            <section className="m-4">
-                                <h2 className="mb-5">Detalles del producto</h2>
-                                <div className="border p-4 px-5 details">
-                                    <div className="row g-5">
+                            <section className="m-3">
+                                <h2 className="mb-4">Detalles del producto</h2>
+                                <div className="border p-4 px-3 details">
+
+                                    <div className="row g-3">           
                                         <div className="col-sm-4">
-                                            <p className="text " name='code' 
+                                            <p className="text text-center" name='code' 
                                             value={formData.code} onChange={handleChange}>Código </p>
-                                            <p>{formData.code}</p>
+                                            <p className="border text-center px-2">{formData.code}</p>
                                         </div>
 
                                         <div className="col-sm-4">
-                                            <p  className="text" name='name' 
+                                            <p  className="text text-center" name='name' 
                                             value={formData.name} onChange={handleChange}>Nombre</p>
-                                            <p>{formData.name}</p>
+                                            <p className="border text-center px-2">{formData.name}</p>
                                         </div>
 
                                         <div className="col-sm-4">
-                                            <p  className="text" name='price'
+                                            <p  className="text text-center" name='category'
+                                            value={formData.category} onChange={handleChange}>Categoria</p>
+                                            <p className="border text-center px-2">{formData.category}</p>
+                                        </div>
+                                    </div> 
+
+                                    <div className="row g-3">
+                                        <div className="col-sm-4">
+                                            <p className="text text-center " name='price' 
                                             value={formData.price} onChange={handleChange}>Precio</p>
-                                            <p>{formData.price}</p>
+                                            <p className="border text-center px-2">{formData.price}</p>
                                         </div>
-                                    </div> 
 
-                                    <div className="row g-3 mt-4">
-                                        
                                         <div className="col-sm-4">
-                                            <p className="text" name='stock'   
+                                            <p  className="text text-center" name='profit' 
+                                            value={formData.profit} onChange={handleChange}>% Ganancia</p>
+                                            <p className="border text-center px-2">{formData.profit}</p>
+                                        </div>
+
+                                        <div className="col-sm-4">
+                                            <p  className="text text-center" name='stock'
                                             value={formData.stock} onChange={handleChange}>Stock</p>
-                                            <p>{formData.stock}</p>
-                                        </div>
-
-                                        <div className="col-sm-4">
-                                            <p className="text" name='description'   
-                                            value={formData.description} onChange={handleChange}>Descripción </p>
-                                            <p>{formData.description}</p>
+                                            <p className="border text-center px-2">{formData.stock}</p>
                                         </div>
                                     </div> 
 
+                                    <div className="row g-3">
+                                        <div className="col-sm-6">
+                                            <p className="text text-center " name='mark_model' 
+                                            value={formData.mark_model} onChange={handleChange}>Modelo</p>
+                                            <p className="border text-center px-2">{formData.mark_model}</p>
+                                        </div>
+
+                                        <div className="col-sm-6">
+                                            <p  className="text text-center" name='transmission' 
+                                            value={formData.transmission} onChange={handleChange}>Transmisión</p>
+                                            <p className="border text-center px-2">{formData.transmission}</p>
+                                        </div>
+                                    </div> 
+
+                                    <div className="row g-3">
+                                        <div className="col-sm-12">
+                                            <p className="text " name='images' 
+                                            value={formData.images} onChange={handleChange}>Imagenes</p>
+                                            <div className="d-flex h-auto">
+                                                <p className="border p-2">{formData.images}</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div> 
+                                    <div className="row g-3">
+                                        <div className="col-sm-12">
+                                            <p  className="text" name='description' 
+                                            value={formData.description} onChange={handleChange}>Descripción</p>
+                                            <div >
+                                                <p className="border p-2">{formData.description}</p>
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </div>   
                             </section> 
 
@@ -101,7 +157,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                                         <tr key={quotation.id}>
                                                             <td>{quotation.provider.name}</td>
                                                             <td>{quotation.price}</td>
-                                                            <td>Descripcion</td>
+                                                            <td>{quotation.description}</td>
                                                         </tr>
                                                     ))
                                                 }
@@ -110,14 +166,11 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                     </section>
                                 </div>
                             </div>
-
-                            
-
-                            
                         </div>
                     </div>
                 </div>
             </div>
+
         </> 
     );
 }

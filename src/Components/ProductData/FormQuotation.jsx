@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 
-const FormQuotation = ({isOpenModalQuotation, closeModalCreateQuotation, datasProvider, addDataQuotation, editDataProduct, openModalEditProduct, loadDatasQuotation}) => {
+const FormQuotation = ({isOpenModalQuotation, closeModalCreateQuotation, datasProvider, addDataQuotation, editDataProduct, loadDatasQuotation}) => {
 
     const initialForm ={
         "product": "",

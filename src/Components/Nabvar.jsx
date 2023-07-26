@@ -33,10 +33,27 @@ const Nabvar = () => {
                     search"  type="search" placeholder="Search" hearia-label="Search"/>
 
                     <div className={`nav-items ${isOpenToggle &&"openToggle" }`}>
-                        <Link to='/OrdersData' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Pedidos</Link>
-                        <Link to='/IndexProd' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Productos</Link>
-                        <Link to='/IndexUser' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Clientes</Link>
-                        <Link to='/IndexProv' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Provedores</Link>   
+                        <ul>
+                            <li>
+                                <Link to='/IndexUser' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Clientes</Link>
+                            </li>
+
+                            <li>
+                                <Link to='/IndexOthers' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Otros</Link>
+                            </li>
+
+                            <li>
+                                <Link to='/OrdersData' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Pedidos</Link>
+                            </li>
+
+                            <li>
+                                <Link to='/IndexProd' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Productos</Link>
+                            </li>
+
+                            <li>
+                                <Link to='/IndexProv' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Provedores</Link>   
+                            </li>
+                        </ul>
                     </div>    
 
                     <div className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>

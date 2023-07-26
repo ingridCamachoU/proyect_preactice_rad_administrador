@@ -14,14 +14,16 @@ const IndexProd = () => {
     const [datasProduct, setDatasProduct] = useState([]);
     const [datasProvider, setDatasProvider] = useState([]);
     const [datasQuotation, setDatasQuotation] = useState([]);
+    const [datasCategories, setDatasCategories] = useState([]);
+    const [datasModels, setDatasModels] = useState([]);
     const [editDataProduct, setEditDataProduct] = useState(null);
     const  [isOpenModalEditProduct, openModalEditProduct, closeModalEditProduct,isOpenModalProduct, openModalCreateProduct, closeModalCreateProduct, isOpenModalQuotation, openModalCreateQuotation, closeModalCreateQuotation, isOpenProductDetailsModal, openProductDetailsModal, closeProductDetailsModal] = useModal(false);
 
     const {darkMode} = useContext(DarkModeContext);
 
-    const urlProduct = "http://localhost:8000/api/v1/product/";
+    const urlProduct = "http://localhost:8000/api/v1/products/";
 
-    /* Load Data product*/    
+    /* Load product Data*/    
   const loadDatasProduct = async () => {
         let config = {
             method: 'get',
@@ -159,9 +161,13 @@ const IndexProd = () => {
           headers: { },
           data : datasProvider
         };
-    
-      const response = await axios(config)
-      setDatasProvider(response.data);
+        try {
+            const response = await axios(config)
+            setDatasProvider(response.data);
+
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
@@ -173,12 +179,17 @@ const IndexProd = () => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: (`http://localhost:8000/api/v1/products/${product.id}/quotations`),
+            url: (`http://localhost:8000/api/v1/products/${product.id}/quotations/`),
             headers: { },
             data : datasQuotation
           };
-          const response = await axios(config)
-          setDatasQuotation(response.data);
+          try {
+            const response = await axios(config)
+            setDatasQuotation(response.data);
+
+        } catch (error) {
+            console.log(error);
+        }  
     }
 
      /* Create new Quotation*/   
@@ -220,7 +231,7 @@ const IndexProd = () => {
         let config = {
             method: 'delete',
             maxBodyLength: Infinity,
-            url: (`http://localhost:8000/api/v1/products/${editDataProduct.id}/quotations/${id}`),
+            url: (`http://localhost:8000/api/v1/products/${editDataProduct.id}/quotations/${id}/`),
             headers: { },
             data : datasProduct
           };
@@ -240,6 +251,50 @@ const IndexProd = () => {
         loadDatasQuotation(editDataProduct);
     }
 
+    /* Load categories data*/      
+    const loadDatasCategories = async () => {
+        let config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:8000/api/v1/categories/',
+            headers: { },
+            data : datasCategories
+        };
+        try {
+            const response = await axios(config)
+            setDatasCategories(response.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        loadDatasCategories();
+    }, []);
+
+     /* Load Models data*/      
+    const loadDatasModels = async () => {
+        let config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:8000/api/v1/models/',
+            headers: { },
+            data : datasModels
+        };
+        try {
+            const response = await axios(config)
+            setDatasModels(response.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        loadDatasModels();
+    }, []);
+
     return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
             <div className="nav-contenedor">
@@ -248,15 +303,15 @@ const IndexProd = () => {
                     <i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>
                 </button>
             </div>
-            <FormProduct addProduct={addProduct} isOpenModalProduct={isOpenModalProduct} closeModalCreateProduct={closeModalCreateProduct} />
+            <FormProduct addProduct={addProduct} isOpenModalProduct={isOpenModalProduct} closeModalCreateProduct={closeModalCreateProduct} datasCategories={datasCategories} datasModels={datasModels}/>
 
-            <FormEditProduct editDataProduct={editDataProduct}  editProduct={editProduct} setEditDataProduct= {setEditDataProduct}  isOpenModalEditProduct={isOpenModalEditProduct} closeModalEditProduct={closeModalEditProduct} openModalCreateQuotation={openModalCreateQuotation}  datasQuotation={datasQuotation} deletequotation={deletequotation}/>     
+            <FormEditProduct editDataProduct={editDataProduct}  editProduct={editProduct} setEditDataProduct= {setEditDataProduct}  isOpenModalEditProduct={isOpenModalEditProduct} closeModalEditProduct={closeModalEditProduct} openModalCreateQuotation={openModalCreateQuotation}  datasQuotation={datasQuotation} deletequotation={deletequotation}datasCategories={datasCategories} datasModels={datasModels}/>     
 
-            <TableProduct datasProduct={datasProduct}  setEditDataProduct= {setEditDataProduct} deleteProduct={deleteProduct} openModalEditProduct={openModalEditProduct}  loadDatasQuotation={ loadDatasQuotation} addDataQuotation={addDataQuotation} openProductDetailsModal={openProductDetailsModal}/>
+            <TableProduct datasProduct={datasProduct}  setEditDataProduct= {setEditDataProduct} deleteProduct={deleteProduct} openModalEditProduct={openModalEditProduct}  loadDatasQuotation={ loadDatasQuotation} addDataQuotation={addDataQuotation} openProductDetailsModal={openProductDetailsModal} datasQuotation={datasQuotation}/>
 
-            <FormQuotation isOpenModalQuotation={isOpenModalQuotation} closeModalCreateQuotation={closeModalCreateQuotation} datasProvider={datasProvider} addDataQuotation={addDataQuotation} editDataProduct={editDataProduct} openModalEditProduct={openModalEditProduct} loadDatasQuotation={ loadDatasQuotation} />
+            <FormQuotation isOpenModalQuotation={isOpenModalQuotation} closeModalCreateQuotation={closeModalCreateQuotation} datasProvider={datasProvider} addDataQuotation={addDataQuotation} editDataProduct={editDataProduct} loadDatasQuotation={ loadDatasQuotation} />
 
-            <ProductDetails closeProductDetailsModal={closeProductDetailsModal} isOpenProductDetailsModal={isOpenProductDetailsModal} datasQuotation={datasQuotation} editDataProduct={editDataProduct}/>
+            <ProductDetails closeProductDetailsModal={closeProductDetailsModal} isOpenProductDetailsModal={isOpenProductDetailsModal} datasQuotation={datasQuotation} editDataProduct={editDataProduct} datasProduct={datasProduct} />
         </section>
     );
 }

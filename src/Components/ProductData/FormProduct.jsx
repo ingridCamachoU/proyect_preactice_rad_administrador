@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 
-const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct}) => {
+const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, datasCategories, datasModels}) => {
 
     const initialForm ={
         "code": "",
         "name": "",
         "description": "",
         "price": "",
-        "stock": ""
+        "stock": "",
+        "profit": "30",
+        "category": "",
+        "transmission": "",
+        "mark_model": "",
+        "images": [],
     };
 
     const [formData, handleChange, handleReset, setFormData] = useForm (initialForm);
@@ -49,7 +54,7 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct}) 
             errors.stock= 'El campo "Stock" no debe estar vacio.';
         }
         return errors;
-    }
+    };
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -58,7 +63,7 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct}) 
         setErrors(err)
 
         if (Object.keys(err).length === 0){
-            if (formData.code !== '' && formData.name !== ''  && formData.description !== '' && formData.price !== '' && formData.stock !== '' ){
+            if (formData.code !== '' && formData.name !== ''  && formData.description !== '' && formData.price !== '' && formData.stock !== ''  &&  formData.category !== ''){
                     addProduct(formData);
                     closeModalCreateProduct();
                     setFormData(initialForm);
@@ -77,6 +82,14 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct}) 
         closeModalCreateProduct(); 
         setFormData(initialForm);
     };
+
+    const add=(e)=>{
+        const {name, value}= e.target;
+        setFormData({
+            ...formData, 
+            [name]:[value],
+        });
+    }
     
   return (
         <>
@@ -92,7 +105,7 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct}) 
 
                             <h2 className="pb-5">Crear Producto</h2>
                             <div className="row g-3">
-                                <div className="col-sm-6">
+                                <div className="col-sm-4">
                                     <label className="form-label">Código </label>
                                     <input 
                                     className="form-control" 
@@ -102,7 +115,7 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct}) 
                                     {errors.code && <p className="text-danger">{errors.code}</p>}
                                 </div>
 
-                                <div className="col-sm-6">
+                                <div className="col-sm-4">
                                     <label  className="form-label">Nombre</label>
                                     <input 
                                     className="form-control" 
@@ -111,20 +124,41 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct}) 
                                     onChange={handleChange} />
                                     {errors.name && <p className="text-danger">{errors.name}</p>}
                                 </div>
+
+                                <div className="col-sm-4">
+                                    <label  className="form-label">Categoría</label>
+                                    <select className="form-control" name="category" onChange={handleChange} value={formData.category} required>
+                                        <option ></option>
+                                        {datasCategories.map(category => (
+                                            <option key={category.id} value={category.id}>{category.name}</option>
+                                            ))}
+                                    </select>
+                                </div>
                             </div> 
 
                             <div className="row g-3 mt-4">
-                                <div className="col-sm-6">
+
+                                <div className="col-sm-4">
                                     <label  className="form-label">Precio</label>
                                     <input 
                                     className="form-control"
-                                    type="number" name='price' required=""
+                                    type="number" name='price' required
                                     value={formData.price} 
                                     onChange={handleChange}/>
                                     {errors.price && <p className="text-danger">{errors.price}</p>}
                                 </div>
 
-                                <div className="col-sm-6">
+                                <div className="col-sm-4">
+                                    <label  className="form-label">% Ganancia</label>
+                                    <input 
+                                    className="form-control"
+                                    type="number" name='profit' required
+                                    value={formData.profit} 
+                                    onChange={handleChange}/>
+                                    {errors.profit && <p className="text-danger">{errors.profit}</p>}
+                                </div>
+                                
+                                <div className="col-sm-4">
                                     <label className="form-label">Stock</label>
                                     <input  
                                     className="form-control" 
@@ -133,11 +167,41 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct}) 
                                     onChange={handleChange}/>
                                     {errors.stock && <p className="text-danger">{errors.stock}</p>}
                                 </div>
+
                             </div> 
 
                             <div className="row g-3 mt-4">
                                 <div className="col-sm-6">
-                                    <label className="form-label">Descripción </label>
+                                    <label className="form-label">Modelo</label>
+                                    <select className="form-control" name="mark_model" onChange={handleChange} value={formData.mark_model}>
+                                        <option ></option>
+                                        {datasModels.map(mark_model => (
+                                            <option key={mark_model.id} value={mark_model.id} >{mark_model.name} ({mark_model.mark.name})</option>
+                                            ))}  
+                                    </select>
+                                </div>
+
+                                <div className="col-sm-6">
+                                    <label  className="form-label">Transmisión</label>
+                                    <select className="form-control" name="transmission" onChange={handleChange} value={formData.transmission}>
+                                        <option value=""></option>
+                                        <option value="Automático">Automático</option>
+                                        <option value="Mecánico">Mecánico</option>
+                                    </select>
+                                </div>
+                            </div> 
+
+                            <div className="row g-3 mt-4">
+                                <div className="col-sm-6">
+                                    <label  className="form-label">Imagenes</label>
+                                    <textarea
+                                    className="form-control" 
+                                    type="text" name="images"
+                                    value={formData.images} 
+                                    onChange={add}/>
+                                </div>
+                                <div className="col-sm-6">
+                                    <label className="form-label">Descripción</label>
                                     <textarea 
                                     className="form-control" 
                                     type="text"  required name='description'   

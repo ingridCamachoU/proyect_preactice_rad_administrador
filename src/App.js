@@ -7,9 +7,9 @@ import Menu from './Components/Menu';
 import IndexProd from "./Components/ProductData/IndexProd";
 import IndexUser from "./Components/UserData/IndexUser";
 import IndexProv from "./Components/ProvidersData/IndexProv";
+import IndexOthers from "./Components/Others/IndexOthers";
 import { useContext } from 'react';
 import { DarkModeContext } from './Context/DarkModeContext';
-
 
 function App() {
 
@@ -22,8 +22,9 @@ function App() {
             <div className={darkMode ? `container-xxl dark` : `container-xxl light`}>
                 <Menu/>
                 <Routes>
-                    <Route path="/IndexProd" element={<IndexProd/>} />
                     <Route path="/IndexUser" element={<IndexUser/>} />
+                    <Route path="/IndexProd" element={<IndexProd/>} />
+                    <Route path="/IndexOthers" element={<IndexOthers/>} />
                     <Route path="/IndexProv" element={<IndexProv/>} />
                     <Route path="*" element={<div className={darkMode ? `error dark` : `error light`}><h1>404</h1> <h2>File not found</h2></div> } />
                 </Routes>
