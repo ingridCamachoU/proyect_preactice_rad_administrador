@@ -30,7 +30,7 @@ const Nabvar = () => {
                 </div>
                 <form className="search" role="search">
                     <input className="form-control me-2 
-                    search"  type="search" placeholder="Search" hearia-label="Search"/>
+                    search"  type="search" placeholder="Search"/>
 
                     <div className={`nav-items ${isOpenToggle &&"openToggle" }`}>
                         <ul>
