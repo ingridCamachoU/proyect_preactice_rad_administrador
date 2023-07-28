@@ -20,10 +20,12 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, d
 
     const [errors, setErrors] = useState({});
 
+   
+
     const onValidate = (formData)=>{
         let errors = {};
-        let regexCode = /^([0-9-A-Za-zÑñÁáÉéÍíÓóÚúÜüs]){2,20}$/;
-        let regexName = /^([0-9-A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]){2,20}$/;
+        let regexCode = /^([0-9-A-Za-zÑñÁáÉéÍíÓóÚúÜüs]){5,20}$/;
+        let regexName = /^([0-9-A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]){5,20}$/;
         let regexDescription = /^.{1,50}$/;
         let regexPrice = /^[0-9]+$/;
         let regexStock = /^[0-9]+$/;
@@ -31,19 +33,19 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, d
         if (!formData.code.trim()){
             errors.code= 'El campo "Código" no debe ser vacio.';
         }else if(!regexCode.test(formData.code)){
-            errors.code= 'El campo "Código" es incorrecto, no puede tener espacios en blanco.';
+            errors.code= 'El campo "Código" es incorrecto, no puede tener espacios en blanco y debe tener más de 5 caracteres';
         }
 
         if (!formData.name.trim()){
             errors.name= 'El campo "Nombre" no debe ser vacio.';
         }else if(!regexName.test(formData.name)){
-            errors.name= 'El campo "Nombre" es incorrecto.';
+            errors.name= 'El campo "Nombre" es incorrecto debe tener más  de 5 caracteres.';
         }
 
         if (!formData.description.trim()){
             errors.description= 'El campo "Descripción" no debe ser vacio.';
         }else if(!regexDescription.test(formData.description)){
-            errors.description= 'El campo "Descripción" acepta solo 50 caracteres.';
+            errors.description= 'El campo "Descripción" debe tener de 5 hasta  50 caracteres.';
         }
 
         if(!regexPrice.test(formData.price)){
@@ -56,23 +58,18 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, d
         return errors;
     };
 
+    const err= onValidate(formData);
+
     const handleSubmit = (e)=>{
         e.preventDefault();
-
-        const err= onValidate(formData);
-        setErrors(err)
+        setErrors(err);        
 
         if (Object.keys(err).length === 0){
-            if (formData.code !== '' && formData.name !== ''  && formData.description !== '' && formData.price !== '' && formData.stock !== ''  &&  formData.category !== ''){
-                    addProduct(formData);
-                    closeModalCreateProduct();
-                    setFormData(initialForm);
-                }
-            } 
-            else{
-                setErrors(err);
-            }
-            setFormData(initialForm);
+            addProduct(formData);
+            closeModalCreateProduct();
+            handleReset();
+            setErrors('');
+        } 
     };
     
     const handleModalClick= e => e.stopPropagation();
@@ -80,7 +77,7 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, d
     const close=()=>{
         handleReset();
         closeModalCreateProduct(); 
-        setFormData(initialForm);
+        setErrors('');
     };
 
     const add=(e)=>{
@@ -173,7 +170,7 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, d
                             <div className="row g-3 mt-4">
                                 <div className="col-sm-6">
                                     <label className="form-label">Modelo</label>
-                                    <select className="form-control" name="mark_model" onChange={handleChange} value={formData.mark_model}>
+                                    <select className="form-control" name="mark_model" onChange={handleChange} value={formData.mark_model} required>
                                         <option ></option>
                                         {datasModels.map(mark_model => (
                                             <option key={mark_model.id} value={mark_model.id} >{mark_model.name} ({mark_model.mark.name})</option>

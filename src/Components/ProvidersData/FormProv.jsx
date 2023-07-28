@@ -68,6 +68,7 @@ const FormProv = ({addData, editData, editPRov, isOpen, closeModal, title}) => {
                     editPRov(formData);
                     setFormData(initialForm);
                     closeModal();
+                    setErrors('');
                     
                 } else {
                     addData(formData);

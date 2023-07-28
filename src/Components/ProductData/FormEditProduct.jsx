@@ -266,7 +266,7 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                                     <div className="text-end mt-2">
                                         <input className="btn btn-outline-primary m-2" type="submit" value="Guardar"/>
                                         
-                                        <input className="btn btn-outline-success m-2 px-3" type="button" value="Cotizar" onClick={()=> {handleClickCotizar()}} />
+                                        <input className="btn btn-outline-success m-2 px-3" type="button" value="Cotizar" onClick={()=> {handleClickCotizar(formData.id)}} />
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +295,7 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                                                     <td>Descripcion</td>
                                                     <td>
                                         
-                                                        <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDelete(quotation.id)}>
+                                                        <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDelete()}>
                                                             <i className="fa-solid fa-trash"></i>
                                                         </button>
                                                     </td>

@@ -32,20 +32,20 @@ const FormQuotation = ({isOpenModalQuotation, closeModalCreateQuotation, datasPr
 
         const err= onValidate(formData);
         setErrors(err)
-
-        formData.product= editDataProduct.id
         
+        formData.product= editDataProduct.id 
+
         if (Object.keys(err).length === 0){
             if (formData.product !== '' && formData.provider !== ''  && formData.price !== '' ){
-                    addDataQuotation(formData);
-                    setFormData(initialForm);
-                    closeModalCreateQuotation();
-                }
+                addDataQuotation(formData);
+                setFormData(initialForm);
+                closeModalCreateQuotation();
+                
+            }
         }else{
             setErrors(err);
         }
         setFormData(initialForm);
-        console.log(editDataProduct)
         loadDatasQuotation(editDataProduct);
     };
 

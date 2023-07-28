@@ -12,7 +12,6 @@ export const useForm = (initialForm)=>{
         });
     };
    
-
     const handleReset =() =>{
         setFormData(initialForm);
     }
