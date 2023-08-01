@@ -4,7 +4,7 @@
   --text-color-dark: #adb5bd;
   --text-color-light: #474545;
   --btn-color-light: #7a7878;
-  --body-color-light: #ded9d9;
+  --body-color-light: #EEF4FC;
   --body-color--dark: #212529;
   --body-color-menu: #F7F7F7;
   --body-color-menu-dark: #252930;
@@ -25,7 +25,7 @@
   --font-medium: 500;
   --font-semi-bold: 600;
   /*========== Margenes Bottom ==========*/
-  --mb-0-5: 0.5rem;
+  --mb-0-5: 0.3rem;
   --mb-1: 1rem;
   --mb-1-5: 1.5rem;
   --mb-2: 2rem;
@@ -63,7 +63,7 @@
   padding: 0;
 }
 .body header .container-fluid {
-  background: #4545f3;
+  background: #285EA7;
   padding: 13px;
 }
 .body header h1 {
@@ -130,7 +130,7 @@ ul {
   box-shadow: var(--box-shadow-light);
 }
 .contenedor.light {
-  background: var(--body-color-second);
+  background: #f3f6f9;
   color: var(--text-color-light);
 }
 .contenedor.dark {
@@ -197,7 +197,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(170, 170, 170, 0.792);
+  background: rgba(244, 244, 244, 0.8);
   width: 100%;
   min-height: 100vh;
   place-items: center;
@@ -211,8 +211,8 @@ ul {
   margin-top: var(--mb-2-5);
 }
 .modal-container .modal-body {
-  background-color: #fefefe;
-  box-shadow: var(--box-shadow-conten);
+  background-color: #FFFFFF;
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   width: 100%;
   border-radius: var(--mb-1);
   padding: var(--mb-1);
@@ -269,9 +269,6 @@ ul {
   display: flex;
   box-shadow: var(--box-shadow-conten-menu);
 }
-.menu.light {
-  color: var(--text-color-light);
-}
 .menu .items {
   margin-top: var(--mb-2);
   width: 100%;
@@ -280,15 +277,17 @@ ul {
 }
 .menu .items li {
   list-style: none;
+  width: 100%;
+  padding: var(--mb-0-5) 0;
+}
+.menu .items li:hover {
+  background: #adb5bd;
+  width: 100%;
 }
 .menu .items .item {
   text-decoration: none;
   color: var(--text-color);
-  padding: var(--mb-0-5);
-  width: 100%;
-}
-.menu .items .item:hover {
-  background: #adb5bd;
+  padding-left: 0.2em;
 }
 .menu .items .item.light {
   color: var(--text-color);
