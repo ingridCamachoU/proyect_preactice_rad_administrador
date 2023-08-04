@@ -20,8 +20,6 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, d
 
     const [errors, setErrors] = useState({});
 
-   
-
     const onValidate = (formData)=>{
         let errors = {};
         let regexCode = /^([0-9-A-Za-zÑñÁáÉéÍíÓóÚúÜüs]){5,20}$/;
