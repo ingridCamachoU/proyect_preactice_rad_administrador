@@ -11,31 +11,32 @@ import FormMark from "./FormMark"
 
 const IndexOthers = () => {
 
-    const [datasCategoria, setDatasCategoria] = useState([]);
+    const [datasCategorie, setDatasCategorie] = useState([]);
     const [datasMark, setDatasMark] = useState([]);
     const [datasModels, setDatasmodels] = useState([]);
     const [title, setTitle]= useState('');
-    const [editDataCategoria, setEditCategoria] = useState(null);
+    const [editDataCategorie, setEditCategorie] = useState(null);
     const [editDataMark, setEditMark] = useState(null);
     const [editDataModel, setEditModel] = useState(null);
-    const [isOpenCategoria, openModalCreateCategoria, closeModalCategoria, isOpenMarca, openModalCreateMarca, closeModalMarca, isOpenModel, openModalCreateModel, closeModalModel] = useModal(false);
+
+    const [isOpenCategorie, openModalCreateCategorie, closeModalCategorie, isOpenMark, openModalCreateMark, closeModalMark, isOpenModel, openModalCreateModel, closeModalModel] = useModal(false);
 
     const {darkMode} = useContext(DarkModeContext);
 
-    const urlCategoria= 'http://localhost:8000/api/v1/categories/';
+    const urlCategorie= `${process.env.REACT_APP_BASE_URL_}api/v1/categories/`;
 
     /* Load categoria Data*/    
-    const loadDatasCategoria = async () => {
+    const loadDatasCategorie = async () => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: urlCategoria,
+            url: urlCategorie,
             headers: { },
-            data : datasCategoria
+            data : datasCategorie
         };
         try {
             const response = await axios(config)
-            setDatasCategoria(response.data);
+            setDatasCategorie(response.data);
 
         } catch (error) {
             console.log(error);
@@ -58,17 +59,17 @@ const IndexOthers = () => {
     };
 
     useEffect(() => {
-        loadDatasCategoria();
+        loadDatasCategorie();
     }, []);
 
      /* Create new categoria*/   
-     const addCategoria = async (formData) => {
+     const addCategorie = async (formData) => {
         let data = JSON.stringify(formData);
  
         let config = {
             method: "post",
             maxBodyLength: Infinity,
-            url: urlCategoria,
+            url: urlCategorie,
             headers: {
                 "Content-Type": "application/json",
             },
@@ -92,16 +93,16 @@ const IndexOthers = () => {
                 confirmButtonText: 'Ok'
             });
         }
-        loadDatasCategoria();  
+        loadDatasCategorie();  
     };
 
-     /*Edit categoria*/  
-     const editCategoria= async (formData) =>{
+     /*Edit categorie*/  
+     const editCategorie= async (formData) =>{
         let data = JSON.stringify(formData);
             let config = {
                 method: 'put',
                 maxBodyLength: Infinity,
-                url: (`${urlCategoria}${editDataCategoria.id}/`),
+                url: (`${urlCategorie}${editDataCategorie.id}/`),
                 headers: { 
                 'Content-Type': 'application/json'
                 },
@@ -124,18 +125,18 @@ const IndexOthers = () => {
                 confirmButtonText: 'Ok'
             });
         }
-        loadDatasCategoria();
-        setEditCategoria(null);
+        loadDatasCategorie();
+        setEditCategorie(null);
     };
 
-    /* Delete categoria*/ 
-    const deleteCategoria= async(id)=>{
+    /* Delete categorie*/ 
+    const deleteCategorie= async(id)=>{
         let config = {
             method: 'delete',
             maxBodyLength: Infinity,
-            url: (`${urlCategoria}${id}/`),
+            url: (`${urlCategorie}${id}/`),
             headers: { },
-            data : datasCategoria
+            data : datasCategorie
           };
           
         try {
@@ -150,11 +151,11 @@ const IndexOthers = () => {
                 confirmButtonText: 'Ok'
             });
         }
-        loadDatasCategoria();
+        loadDatasCategorie();
     }
 
     /* ---------------------------------------------------------------------*/ 
-    const urlMarks= 'http://localhost:8000/api/v1/marks/';
+    const urlMarks= `${process.env.REACT_APP_BASE_URL_}api/v1/marks/`;
 
     /* Load marks Data*/    
     const loadDatasMarks = async () => {
@@ -286,7 +287,7 @@ const IndexOthers = () => {
     }
 
     /* ---------------------------------------------------------------------*/ 
-    const urlModels= 'http://localhost:8000/api/v1/models/';
+    const urlModels= `${process.env.REACT_APP_BASE_URL_}api/v1/models/`;
 
     /* Load models Data*/    
     const loadDatasModels = async () => {
@@ -399,7 +400,7 @@ const IndexOthers = () => {
             maxBodyLength: Infinity,
             url: (`${urlModels}${id}/`),
             headers: { },
-            data : datasCategoria
+            data : datasCategorie
           };
           
         try {
@@ -419,13 +420,13 @@ const IndexOthers = () => {
 
     return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
-            <TableOthers deleteCategoria={deleteCategoria} datasCategoria={datasCategoria} deleteMarks={deleteMarks} datasMark={datasMark} deleteModels={deleteModels} datasModels={datasModels} openModalCreateCategoria={openModalCreateCategoria} openModalCreateMarca={openModalCreateMarca} openModalCreateModel={openModalCreateModel} setEditCategoria={setEditCategoria} setEditMark={setEditMark} setEditModel={setEditModel}   setTitle={setTitle} />
+            <TableOthers deleteCategorie={deleteCategorie} datasCategorie={datasCategorie} deleteMarks={deleteMarks} datasMark={datasMark} deleteModels={deleteModels} datasModels={datasModels} openModalCreateCategorie={openModalCreateCategorie} openModalCreateMark={openModalCreateMark} openModalCreateModel={openModalCreateModel} setEditCategorie={setEditCategorie} setEditMark={setEditMark} setEditModel={setEditModel}   setTitle={setTitle} />
 
-            <FormCategoria addCategoria={addCategoria} isOpenCategoria={isOpenCategoria} closeModalCategoria={closeModalCategoria} editCategoria={editCategoria} title={title} editDataCategoria={editDataCategoria}/>
+            <FormCategoria addCategorie={addCategorie} isOpenCategorie={isOpenCategorie} closeModalCategorie={closeModalCategorie} editCategorie={editCategorie} title={title} editDataCategorie={editDataCategorie}/>
 
             <FormModel addModel={addModel} isOpenModel={isOpenModel} closeModalModel={closeModalModel} editModel={editModel} title={title} editDataModel={editDataModel} datasMark={datasMark}/>
 
-            <FormMark addMark={addMark} isOpenMarca={isOpenMarca} closeModalMarca={closeModalMarca} editMark={editMark} title={title} editDataMark={editDataMark}/>
+            <FormMark addMark={addMark} isOpenMark={isOpenMark} closeModalMark={closeModalMark} editMark={editMark} title={title} editDataMark={editDataMark}/>
 
         </section>
     );

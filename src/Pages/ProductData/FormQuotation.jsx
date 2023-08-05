@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
+import Button from "../../Components/Button";
 
 const FormQuotation = ({isOpenModalQuotation, closeModalCreateQuotation, datasProvider, addDataQuotation, editDataProduct, loadDatasQuotation}) => {
 
@@ -63,9 +64,8 @@ const FormQuotation = ({isOpenModalQuotation, closeModalCreateQuotation, datasPr
             <div className="modal-dialog modal-dialog-scrollable">
                 <div className="modal-content" >
                     <div className="modal-body" onClick={handleModalClick}>
-                        <button className="modal-close p-1" onClick={close}>
-                            <i className="fa-solid fa-xmark"></i>
-                        </button>
+                        
+                        <Button className={"modal-close p-1"} onClick={close} text={ <i className="fa-solid fa-xmark"></i>}/>
 
                         <form className=" p-3" onSubmit={handleSubmit} onReset={handleReset} >
 

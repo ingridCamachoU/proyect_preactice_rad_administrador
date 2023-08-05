@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
+import Button from "../../Components/Button";
 
 const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, datasQuotation, editDataProduct}) => {
 
@@ -52,9 +53,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                 <div className="modal-dialog modal-dialog-scrollable">
                     <div className="modal-contents">
                         <div className="modal-body " onClick={handleModalClick}>
-                            <button className="modal-close p-1" onClick={close}>
-                                <i className="fa-solid fa-xmark"></i>
-                            </button>
+                            <Button className={"modal-close p-1"} onClick={close} text={<i className="fa-solid fa-xmark"></i>}/>
 
                             <section className="m-3">
                                 <h2 className="mb-4">Detalles del producto</h2>

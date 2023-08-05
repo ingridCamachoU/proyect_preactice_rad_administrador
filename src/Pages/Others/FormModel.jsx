@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../../hooks/useForm";
+import Button from "../../Components/Button";
 
-const FormCategoria = ({addCategoria, isOpenCategoria, closeModalCategoria,editCategoria, title, editDataCategoria}) => {
+
+const FormModel = ({addModel,isOpenModel, closeModalModel, editModel, title, editDataModel, datasMark}) => {
 
     const initialForm ={
+        "mark": "",
         "name": "",
     };
 
@@ -12,7 +15,7 @@ const FormCategoria = ({addCategoria, isOpenCategoria, closeModalCategoria,editC
     const [errors, setErrors] = useState({});
 
     const onValidate = (formData)=>{
-        let regexName = /^([0-9-A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]){2,20}$/;
+        let regexName = /^([0-9-A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]){5,20}$/;
 
         if (!formData.name.trim()){
             errors.name= 'El campo "Nombre" no debe ser vacio.';
@@ -24,12 +27,16 @@ const FormCategoria = ({addCategoria, isOpenCategoria, closeModalCategoria,editC
     };
 
     useEffect(()=>{
-        if( editDataCategoria !== null){
-            setFormData(editDataCategoria);
+        if( editDataModel !== null){
+            const copyData = {
+                "mark": editDataModel?.mark?.id,
+                "name": editDataModel?.name,
+            }
+            setFormData(copyData);
         } else{
             setFormData(initialForm);
         }
-    },[editDataCategoria]);
+    },[editDataModel]);
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -39,47 +46,46 @@ const FormCategoria = ({addCategoria, isOpenCategoria, closeModalCategoria,editC
 
         if (Object.keys(err).length === 0){
              if(formData.name !== ''){
-                    if (editDataCategoria !== null){
-                        editCategoria(formData);
+                    if (editDataModel !== null){
+                        editModel(formData);
                         setFormData(initialForm);
-                        closeModalCategoria();
+                        closeModalModel();
                         
                     } else {
-                        addCategoria(formData);
+                        addModel(formData);
                         setFormData(initialForm);
-                        closeModalCategoria();
+                        closeModalModel();
                     }
                 }
             } 
             else{
                 setErrors(err);
             }
+            setFormData(initialForm);
     };
     
     const handleModalClick= e => e.stopPropagation();
 
     const close=()=>{
         handleReset();
-        closeModalCategoria(); 
+        closeModalModel(); 
         setFormData(initialForm);
     };
 
   return (
         <>
-            <div className={`modal modal-container ${isOpenCategoria &&"is-Open" }`} onClick={close}>
+            <div className={`modal modal-container ${isOpenModel &&"is-Open" }`} onClick={close}>
                 <div className="modal-dialog modal-dialog-scrollable">
                     <div className="modal-content">
                         <div className="modal-body p-5" onClick={handleModalClick}>
-                            <button className="modal-close px-1 m-4" onClick={close}>
-                                <i className="fa-solid fa-xmark"></i>
-                            </button>
+                            <Button className={"modal-close px-1 m-4"} onClick={close} text={ <i className="fa-solid fa-xmark"></i>}/>
 
                             <form className=" p-3" onSubmit={handleSubmit} onReset={handleReset}>
 
                             <h2 className="pb-5">{title}</h2>
                             <div className="row g-3">
                             
-                                <div className="col-sm-12">
+                                <div className="col-sm-6">
                                     <label  className="form-label pb-3">Nombre</label>
                                     <input 
                                     className="form-control" 
@@ -89,6 +95,15 @@ const FormCategoria = ({addCategoria, isOpenCategoria, closeModalCategoria,editC
                                     {errors.name && <p className="text-danger">{errors.name}</p>}
                                 </div>
 
+                                <div className="col-sm-6">
+                                    <label  className="form-label pb-3">Marca</label>
+                                    <select className="form-control" name="mark" onChange={handleChange} value={formData.mark} required>
+                                        <option ></option>
+                                        {datasMark.map(mark => (
+                                            <option key={mark.id} value={mark.id}>{mark.name}</option>
+                                            ))}
+                                    </select>
+                                </div>
                             </div>
 
                             <div className="text-end mt-5">
@@ -104,4 +119,4 @@ const FormCategoria = ({addCategoria, isOpenCategoria, closeModalCategoria,editC
     );
 }
 
-export default FormCategoria;
+export default FormModel;

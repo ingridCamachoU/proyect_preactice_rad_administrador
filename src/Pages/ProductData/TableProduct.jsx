@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { DarkModeContext } from '../../Context/DarkModeContext';
+import Button from '../../Components/Button';
 
 const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModalEditProduct,  loadDatasQuotation, openProductDetailsModal}) => {
     
@@ -78,16 +79,12 @@ const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModa
                                 <td>{product.images}</td>
                                 <td>{product.description}</td>
                                 <td>
-                                    <button type="button" className="btn btn-success m-1" 
-                                    onClick={()=> {handleClick(product)}}>
-                                        <i className="fa-solid fa-pen"></i>
-                                    </button>
-                                    <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDelete(product.id)}>
-                                        <i className="fa-solid fa-trash"></i>
-                                    </button>
-                                    <button type="button" className="btn btn-info m-1" onClick={()=> {handleClickDetails(product)}}>
-                                        <i className="fa-solid fa-eye eye"></i>
-                                    </button>
+                                    <Button className={"btn btn-success m-1"} text={<i className="fa-solid fa-pen"></i>} onClick={handleClick} item={product}/>
+
+                                    <Button className={"btn btn-danger m-1"} text={<i className="fa-solid fa-trash"></i>} onClick={handleClickDelete} item={product.id}/>
+
+                                    <Button className={"btn btn-info m-1"} text={<i className="fa-solid fa-eye eye"></i>} onClick={handleClickDetails} item={product}/>
+
                                 </td>
                             </tr>
                         ))

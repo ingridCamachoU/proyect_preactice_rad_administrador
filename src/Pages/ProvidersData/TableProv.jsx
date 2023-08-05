@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { DarkModeContext } from '../../Context/DarkModeContext';
+import Button from '../../Components/Button';
 
 const TableProv = ({data, setEditData, deleteProv,  openModal, setTitle}) => {
 
@@ -60,12 +61,9 @@ const TableProv = ({data, setEditData, deleteProv,  openModal, setTitle}) => {
                                     <td>{item.contact}</td>
                                     <td>{item.email}</td>
                                     <td>
-                                        <button type="button" className="btn btn-success m-1" onClick={()=>handleClick(item)}>
-                                            <i className="fa-solid fa-pen"></i>
-                                        </button>
-                                        <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDelete(item.id)}>
-                                            <i className="fa-solid fa-trash"></i>
-                                        </button>
+                                        <Button className={"btn btn-success m-1" } text={<i className="fa-solid fa-pen"></i>} onClick={handleClick} item={item}/>
+
+                                        <Button className={"btn btn-danger m-1" } text={<i className="fa-solid fa-trash"></i>} onClick={handleClickDelete} item={item.id}/>
                                     </td>
                                 </tr>
                             ))

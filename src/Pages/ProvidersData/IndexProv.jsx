@@ -5,6 +5,7 @@ import axios from "axios";
 import { useModal } from "../../hooks/useModal";
 import Swal from 'sweetalert2';
 import { DarkModeContext } from "../../Context/DarkModeContext";
+import NabvarTitle from "../../Components/NabvarTitle";
 
 const IndexProv = () => {
 
@@ -15,14 +16,14 @@ const IndexProv = () => {
 
   const {darkMode} = useContext(DarkModeContext);
 
-  const url = "http://localhost:8000/api/v1/providers/";
+  const urlProv = `${process.env.REACT_APP_BASE_URL_}api/v1/providers/`;
 
     /* Load Data*/    
   const loadData = async () => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: url,
+            url: urlProv,
             headers: { },
             data : data
         };
@@ -42,7 +43,7 @@ const IndexProv = () => {
         let config = {
             method: "post",
             maxBodyLength: Infinity,
-            url: url,
+            url: urlProv,
             headers: {
                 "Content-Type": "application/json",
             },
@@ -74,7 +75,7 @@ const IndexProv = () => {
           let config = {
             method: 'put',
             maxBodyLength: Infinity,
-            url: url+editData.id+'/',
+            url: `${urlProv}${editData.id}/`,
                 headers: { 
                 'Content-Type': 'application/json'
                 },
@@ -106,7 +107,7 @@ const IndexProv = () => {
         let config = {
             method: 'delete',
             maxBodyLength: Infinity,
-            url: url+ id,
+            url: `${urlProv}${id}`,
             headers: { },
             data : data
           };
@@ -132,12 +133,8 @@ const IndexProv = () => {
  
   return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
-            <div className="nav-contenedor">
-                    <h1 className="text-center">LISTA DE PROVEEDORES</h1>
-                    <button type="button" className="btn btn-secondary addBtn" onClick={open}>
-                         <i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>
-                    </button>
-            </div>
+            <NabvarTitle title={"LISTA DE PROVEEDORES"} onClick={open}/>
+
             <FormProv isOpen={isOpen} closeModal={closeModal} addData={addData} editData={editData} editPRov={editPRov} title={title}/> 
 
             <TableProv data={data}  setEditData= {setEditData} deleteProv={deleteProv} openModal={openModal} setTitle={setTitle}/>

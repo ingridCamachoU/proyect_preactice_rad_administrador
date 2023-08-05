@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../../hooks/useForm";
+import Button from "../../Components/Button";
 
-
-const FormMark = ({addMark, isOpenMarca, closeModalMarca,editMark, title, editDataMark}) => {
+const FormCategoria = ({addCategorie, isOpenCategorie, closeModalCategorie,editCategorie, title, editDataCategorie}) => {
 
     const initialForm ={
         "name": "",
@@ -25,12 +25,12 @@ const FormMark = ({addMark, isOpenMarca, closeModalMarca,editMark, title, editDa
     };
 
     useEffect(()=>{
-        if( editDataMark !== null){
-            setFormData(editDataMark);
+        if( editDataCategorie !== null){
+            setFormData(editDataCategorie);
         } else{
             setFormData(initialForm);
         }
-    },[editDataMark]);
+    },[editDataCategorie]);
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -40,15 +40,15 @@ const FormMark = ({addMark, isOpenMarca, closeModalMarca,editMark, title, editDa
 
         if (Object.keys(err).length === 0){
              if(formData.name !== ''){
-                    if (editDataMark !== null){
-                        editMark(formData);
+                    if (editDataCategorie !== null){
+                        editCategorie(formData);
                         setFormData(initialForm);
-                        closeModalMarca();
+                        closeModalCategorie();
                         
                     } else {
-                        addMark(formData);
+                        addCategorie(formData);
                         setFormData(initialForm);
-                        closeModalMarca();
+                        closeModalCategorie();
                     }
                 }
             } 
@@ -61,19 +61,17 @@ const FormMark = ({addMark, isOpenMarca, closeModalMarca,editMark, title, editDa
 
     const close=()=>{
         handleReset();
-        closeModalMarca(); 
+        closeModalCategorie(); 
         setFormData(initialForm);
     };
 
   return (
-        <>      
-            <div className={`modal modal-container ${isOpenMarca &&"is-Open" }`} onClick={close}>
+        <>
+            <div className={`modal modal-container ${isOpenCategorie &&"is-Open" }`} onClick={close}>
                 <div className="modal-dialog modal-dialog-scrollable">
                     <div className="modal-content">
                         <div className="modal-body p-5" onClick={handleModalClick}>
-                            <button className="modal-close px-1 m-4" onClick={close}>
-                                <i className="fa-solid fa-xmark"></i>
-                            </button>
+                            <Button className={"modal-close px-1 m-4"} onClick={close} text={ <i className="fa-solid fa-xmark"></i>}/>
 
                             <form className=" p-3" onSubmit={handleSubmit} onReset={handleReset}>
 
@@ -102,7 +100,7 @@ const FormMark = ({addMark, isOpenMarca, closeModalMarca,editMark, title, editDa
                 </div>
             </div>
         </>
-    ) 
+    );
 }
 
-export default FormMark
+export default FormCategoria;

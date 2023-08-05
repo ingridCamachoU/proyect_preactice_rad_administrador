@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import Swal from 'sweetalert2';
+import Button from "../../Components/Button";
 
 const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOpenModalEditProduct, closeModalEditProduct,openModalCreateQuotation, datasQuotation, deletequotation, datasModels, datasCategories}) => {
 
@@ -151,10 +152,8 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                 <div className="modal-dialog modal-dialog-scrollable">
                     <div className="modal-content">
                     <div className="modal-body" onClick={handleModalClick}>
-                        <button className="modal-close p-1" onClick={close}>
-                            <i className="fa-solid fa-xmark"></i>
-                        </button>
-
+                        <Button className={"modal-close p-1"} onClick={close} text={ <i className="fa-solid fa-xmark"></i>}/>
+                        
                         <form className=" p-3" onSubmit={handleSubmit} onReset={handleReset}>
                             <h2>Editar Producto</h2>
                             <div className="row g-3 mt-4">
@@ -294,17 +293,13 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
                                                     <td>{quotation.price}</td>
                                                     <td>Descripcion</td>
                                                     <td>
-                                        
-                                                        <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDelete()}>
-                                                            <i className="fa-solid fa-trash"></i>
-                                                        </button>
+                                                    <Button className={"btn btn-danger m-1"} onClick={handleClickDelete} text={<i className="fa-solid fa-trash"></i>}/>             
                                                     </td>
                                                 </tr>
                                             ))
                                         }
                 
                                     </tbody> 
-
                                 </table>
                             </div>
                         </div>

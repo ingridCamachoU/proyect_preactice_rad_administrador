@@ -8,6 +8,7 @@ import FormEditProduct from "./FormEditProduct";
 import FormQuotation from "./FormQuotation";
 import ProductDetails from "./ProductDetails";
 import { DarkModeContext } from "../../Context/DarkModeContext";
+import NabvarTitle from "../../Components/NabvarTitle";
 
 const IndexProd = () => {
     
@@ -21,7 +22,7 @@ const IndexProd = () => {
 
     const {darkMode} = useContext(DarkModeContext);
 
-    const urlProduct = "http://localhost:8000/api/v1/products/";
+    const urlProduct = `${process.env.REACT_APP_BASE_URL_}api/v1/products/`;
 
     /* Load product Data*/    
   const loadDatasProduct = async () => {
@@ -100,7 +101,7 @@ const IndexProd = () => {
             let config = {
                 method: 'put',
                 maxBodyLength: Infinity,
-                url: (`${urlProduct}${editDataProduct.id}/`),
+                url: `${urlProduct}${editDataProduct.id}/`,
                 headers: { 
                 'Content-Type': 'application/json'
                 },
@@ -200,7 +201,7 @@ const IndexProd = () => {
         let config = {
             method: "post",
             maxBodyLength: Infinity,
-            url: (`http://localhost:8000/api/v1/products/${id}/quotations/`),
+            url: `${urlProduct}${id}/quotations/`,
             headers: {
                 "Content-Type": "application/json",
             },
@@ -231,7 +232,7 @@ const IndexProd = () => {
         let config = {
             method: 'delete',
             maxBodyLength: Infinity,
-            url: (`http://localhost:8000/api/v1/products/${editDataProduct.id}/quotations/${id}/`),
+            url: `${urlProduct}${editDataProduct.id}/quotations/${id}/`,
             headers: { },
             data : datasProduct
           };
@@ -256,7 +257,7 @@ const IndexProd = () => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'http://localhost:8000/api/v1/categories/',
+            url: `${process.env.REACT_APP_BASE_URL_}api/v1/categories/`,
             headers: { },
             data : datasCategories
         };
@@ -278,7 +279,7 @@ const IndexProd = () => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'http://localhost:8000/api/v1/models/',
+            url: `${process.env.REACT_APP_BASE_URL_}api/v1/models/`,
             headers: { },
             data : datasModels
         };
@@ -297,12 +298,8 @@ const IndexProd = () => {
 
     return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
-            <div className="nav-contenedor">
-                <h1 className="text-center">LISTA DE PRODUCTOS</h1>
-                <button type="button" className="btn btn-secondary addBtn" onClick={openModalCreateProduct}>
-                    <i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>
-                </button>
-            </div>
+             <NabvarTitle title={"LISTA DE PRODUCTOS"} onClick={openModalCreateProduct}/>
+
             <FormProduct addProduct={addProduct} isOpenModalProduct={isOpenModalProduct} closeModalCreateProduct={closeModalCreateProduct} datasCategories={datasCategories} datasModels={datasModels}/>
 
             <FormEditProduct editDataProduct={editDataProduct}  editProduct={editProduct} setEditDataProduct= {setEditDataProduct}  isOpenModalEditProduct={isOpenModalEditProduct} closeModalEditProduct={closeModalEditProduct} openModalCreateQuotation={openModalCreateQuotation}  datasQuotation={datasQuotation} deletequotation={deletequotation}datasCategories={datasCategories} datasModels={datasModels}/>     

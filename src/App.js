@@ -4,10 +4,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Nabvar from './Components/Nabvar';
 import Menu from './Components/Menu';
-import IndexProd from "./Components/ProductData/IndexProd";
-import IndexUser from "./Components/UserData/IndexUser";
-import IndexProv from "./Components/ProvidersData/IndexProv";
-import IndexOthers from "./Components/Others/IndexOthers";
+import IndexProd from "./Pages/ProductData/IndexProd";
+import IndexUser from "./Pages/UserData/IndexUser";
+import IndexProv from "./Pages/ProvidersData/IndexProv";
+import IndexOthers from "./Pages/Others/IndexOthers";
 import { useContext } from 'react';
 import { DarkModeContext } from './Context/DarkModeContext';
 

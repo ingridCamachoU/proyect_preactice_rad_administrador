@@ -2,20 +2,21 @@
 import { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { DarkModeContext } from '../../Context/DarkModeContext';
+import Button from '../../Components/Button';
 
-const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,setEditCategoria, datasMark, openModalCreateMarca, setEditMark, deleteModels, datasModels, openModalCreateModel,setEditModel, setTitle, deleteMarks}) => {
+const TableOthers = ({deleteCategorie, datasCategorie,openModalCreateCategorie,setEditCategorie, datasMark, openModalCreateMark, setEditMark, deleteModels, datasModels, openModalCreateModel,setEditModel, setTitle, deleteMarks}) => {
 
     const {darkMode} = useContext(DarkModeContext);
 
       /*  Categoria */    
-    const handleClickEditCategoria =(categoria)=>
+    const handleClickEditCategorie =(categorie)=>
     {
-        setEditCategoria(categoria);
-        openModalCreateCategoria();
+        setEditCategorie(categorie);
+        openModalCreateCategorie();
         setTitle('Editar Categoría');
     };
 
-    const handleClickDeleteCategoria =(categoria)=>
+    const handleClickdeleteCategorie =(categorie)=>
     {
         Swal.fire({
             title: 'Eliminar Categoría',
@@ -32,13 +33,13 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
                 'La Categoría ha sido eliminada.',
                 'success'
                 )
-              deleteCategoria(categoria);
+              deleteCategorie(categorie);
             }
         })
     };
 
-    const openCategoria=()=>{
-        openModalCreateCategoria();
+    const openCategorie=()=>{
+        openModalCreateCategorie();
         setTitle('Crear Categoría');
     };
 
@@ -47,11 +48,11 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
     const handleClickEditMark =(mark)=>
     {
         setEditMark(mark);
-        openModalCreateMarca();
+        openModalCreateMark();
         setTitle('Editar Marca');
     };
 
-    const handleClickDeleteMarca =(mark)=>
+    const handleClickDeleteMark =(mark)=>
     {
         Swal.fire({
             title: 'Eliminar Marca',
@@ -74,7 +75,7 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
     };
 
     const openMark=()=>{
-        openModalCreateMarca();
+        openModalCreateMark();
         setTitle('Crear Marca');
     };
   
@@ -123,9 +124,8 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
                     <div className="col table-responsive">
                         <div className="d-flex title">
                             <h4>Categoría</h4>
-                            <button type="button" className="btn btn-secondary addBtn" onClick={openCategoria}>
-                            <i className="fa-sharp fa-solid fa-circle-plus"></i>
-                            </button>
+                            <Button className={"btn btn-secondary addBtn" } onClick={openCategorie} text={<i className="fa-sharp fa-solid fa-circle-plus"></i>}/>
+                            
                         </div>
                     
                         <table className={darkMode ? `table dark` : `table light`}>
@@ -138,17 +138,15 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
 
                             <tbody>
                                 {   
-                                    datasCategoria.length === 0 ? <tr><td colSpan="6" className="text-center">No hay datos</td></tr>
-                                    :(datasCategoria.map)( categoria=> (
-                                        <tr  key={categoria.id}>
-                                            <td>{categoria.name}</td>
+                                    datasCategorie.length === 0 ? <tr><td colSpan="6" className="text-center">No hay datos</td></tr>
+                                    :(datasCategorie.map)( categorie=> (
+                                        <tr  key={categorie.id}>
+                                            <td>{categorie.name}</td>
                                             <td>
-                                                <button type="button" className="btn btn-success m-1" onClick={()=>handleClickEditCategoria(categoria)}>
-                                                <i className="fa-solid fa-pen"></i>
-                                                </button>
-                                                <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDeleteCategoria(categoria.id)}>
-                                                    <i className="fa-solid fa-trash"></i>
-                                                </button>
+                                                <Button className={"btn btn-success m-1"} onClick={handleClickEditCategorie} text={<i className="fa-solid fa-pen"></i>} item={categorie}/>
+                                                
+                                                <Button className={"btn btn-danger m-1"} onClick={handleClickdeleteCategorie} text={<i className="fa-solid fa-trash"></i>} item={categorie.id}/>
+
                                             </td>
                                         </tr>
                                     ))
@@ -163,9 +161,7 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
                     <div className="col table-responsive">
                         <div className="d-flex title">
                                 <h4>Marca</h4>
-                                <button type="button" className="btn btn-secondary addBtn" onClick={openMark}>
-                                <i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>
-                                </button>
+                                <Button className={"btn btn-secondary addBtn" } onClick={openMark} text={<i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>}/>
                             </div>
                         <table className={darkMode ? `table dark` : `table light`}>
                             <thead className="table-light">
@@ -182,12 +178,9 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
                                         <tr  key={mark.id}>
                                             <td>{mark.name}</td>
                                             <td>
-                                                <button type="button" className="btn btn-success m-1" onClick={()=>handleClickEditMark(mark)}>
-                                                <i className="fa-solid fa-pen"></i>
-                                                </button>
-                                                <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDeleteMarca(mark.id)}>
-                                                    <i className="fa-solid fa-trash"></i>
-                                                </button>
+                                                <Button className={"btn btn-success m-1"} onClick={handleClickEditMark} text={<i className="fa-solid fa-pen"></i>} item={mark}/>
+
+                                                <Button className={"btn btn-danger m-1"} onClick={handleClickDeleteMark} text={<i className="fa-solid fa-trash"></i>} item={mark.id}/>                           
                                             </td>
                                         </tr>
                                     ))
@@ -202,10 +195,9 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
                     <div className="col table-responsive">
                         <div className="d-flex title">
                             <h4>Modelo</h4>
-                            <button type="button" className="btn btn-secondary addBtn" onClick={openModel}>
-                            <i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>
-                            </button>
-                            </div>
+                            <Button className={"btn btn-secondary addBtn"} onClick={openModel} text={ <i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>}/>
+                        </div>
+
                         <table className={darkMode ? `table dark` : `table light`}>
                             <thead className="table-light">
                                 <tr>
@@ -223,12 +215,10 @@ const TableOthers = ({deleteCategoria, datasCategoria,openModalCreateCategoria,s
                                             <td>{model.name}</td>
                                             <td>{model.mark.name}</td>
                                             <td>
-                                                <button type="button" className="btn btn-success m-1" onClick={()=>handleClickEditModel(model)}>
-                                                <i className="fa-solid fa-pen"></i>
-                                                </button>
-                                                <button type="button" className="btn btn-danger m-1" onClick={()=>handleClickDeleteModel(model.id)}>
-                                                    <i className="fa-solid fa-trash"></i>
-                                                </button>
+                                                <Button className={"btn btn-success m-1"} onClick={handleClickEditModel} item={model} text={<i className="fa-solid fa-pen"></i>}/>
+
+                                                <Button className={"btn btn-danger m-1"} onClick={handleClickDeleteModel} item={model.id} text={<i className="fa-solid fa-trash"></i>}/>
+
                                             </td>
                                         </tr>
                                     ))
