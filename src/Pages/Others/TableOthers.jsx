@@ -160,9 +160,9 @@ const TableOthers = ({deleteCategorie, datasCategorie,openModalCreateCategorie,s
                 <div className="col-sm-4">
                     <div className="col table-responsive">
                         <div className="d-flex title">
-                                <h4>Marca</h4>
-                                <Button className={"btn btn-secondary addBtn" } onClick={openMark} text={<i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>}/>
-                            </div>
+                            <h4>Marca</h4>
+                            <Button className={"btn btn-secondary addBtn" } onClick={openMark} text={<i className="fa-sharp fa-solid fa-circle-plus btnAdd"></i>}/>
+                        </div>
                         <table className={darkMode ? `table dark` : `table light`}>
                             <thead className="table-light">
                                 <tr>

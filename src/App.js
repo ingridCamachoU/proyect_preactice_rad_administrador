@@ -16,18 +16,21 @@ function App() {
     const {darkMode} = useContext(DarkModeContext)
   return (
       <div className={darkMode ? `body dark` : `body light`}>
-            <header>
-            <Nabvar/>
-            </header>
-            <div className={darkMode ? `container-xxl dark` : `container-xxl light`}>
+            <div className={darkMode ? `container-xxl dark` : `container-xxl light`}style={{padding: 0}}>
                 <Menu/>
-                <Routes>
-                    <Route path="/IndexUser" element={<IndexUser/>} />
-                    <Route path="/IndexProd" element={<IndexProd/>} />
-                    <Route path="/IndexOthers" element={<IndexOthers/>} />
-                    <Route path="/IndexProv" element={<IndexProv/>} />
-                    <Route path="*" element={<div className={darkMode ? `error dark` : `error light`}><h1>404</h1> <h2>File not found</h2></div> } />
-                </Routes>
+                <div className='contenedor' style={{padding:0}}>
+                    <header>
+                        <Nabvar/>
+                    </header>
+                    <Routes>
+                        <Route path="/IndexUser" element={<IndexUser/>} />
+                        <Route path="/IndexProd" element={<IndexProd/>} />
+                        <Route path="/IndexOthers" element={<IndexOthers/>} />
+                        <Route path="/IndexProv" element={<IndexProv/>} />
+                        <Route path="*" element={<div className={darkMode ? `error dark contenedor` : `error light `}><h1>404</h1> <h2>File not found</h2></div> } />
+                    </Routes>
+                </div>
+                
             </div> 
       </div>
     );

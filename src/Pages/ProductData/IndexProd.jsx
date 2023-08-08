@@ -298,7 +298,7 @@ const IndexProd = () => {
 
     return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
-             <NabvarTitle title={"LISTA DE PRODUCTOS"} onClick={openModalCreateProduct}/>
+             <NabvarTitle title={"Lista de Productos"} onClick={openModalCreateProduct}/>
 
             <FormProduct addProduct={addProduct} isOpenModalProduct={isOpenModalProduct} closeModalCreateProduct={closeModalCreateProduct} datasCategories={datasCategories} datasModels={datasModels}/>
 

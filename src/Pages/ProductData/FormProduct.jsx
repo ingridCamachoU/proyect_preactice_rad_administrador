@@ -95,7 +95,6 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, d
                         <div className="modal-body" onClick={handleModalClick}>
                             <Button className={"modal-close p-1"} onClick={close} text={ <i className="fa-solid fa-xmark"></i>}/>
                             
-
                             <form className=" p-3" onSubmit={handleSubmit} onReset={handleReset}>
 
                             <h2 className="pb-5">Crear Producto</h2>

@@ -48,6 +48,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
 
 
   return (
+    
         <>
              <div className={`modal modal-container ${isOpenProductDetailsModal &&"is-Open" }`} onClick={close}>
                 <div className="modal-dialog modal-dialog-scrollable">
@@ -63,19 +64,19 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                         <div className="col-sm-4">
                                             <p className="text text-center" name='code' 
                                             value={formData.code} onChange={handleChange}>Código </p>
-                                            <p className="border text-center px-2">{formData.code}</p>
+                                            <p className="border text-center px-2 description">{formData.code}</p>
                                         </div>
 
                                         <div className="col-sm-4">
                                             <p  className="text text-center" name='name' 
                                             value={formData.name} onChange={handleChange}>Nombre</p>
-                                            <p className="border text-center px-2">{formData.name}</p>
+                                            <p className="border text-center px-2 description">{formData.name}</p>
                                         </div>
 
                                         <div className="col-sm-4">
                                             <p  className="text text-center" name='category'
                                             value={formData.category} onChange={handleChange}>Categoria</p>
-                                            <p className="border text-center px-2">{formData.category}</p>
+                                            <p className="border text-center px-2 description">{formData.category}</p>
                                         </div>
                                     </div> 
 
@@ -83,7 +84,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                         <div className="col-sm-4">
                                             <p className="text text-center " name='price' 
                                             value={formData.price} onChange={handleChange}>Precio</p>
-                                            <p className="border text-center px-2">{formData.price}</p>
+                                            <p className="border text-center px-2 description">{formData.price}</p>
                                         </div>
 
                                         <div className="col-sm-4">
@@ -95,7 +96,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                         <div className="col-sm-4">
                                             <p  className="text text-center" name='stock'
                                             value={formData.stock} onChange={handleChange}>Stock</p>
-                                            <p className="border text-center px-2">{formData.stock}</p>
+                                            <p className="border text-center px-2 description">{formData.stock}</p>
                                         </div>
                                     </div> 
 
@@ -103,13 +104,13 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                         <div className="col-sm-6">
                                             <p className="text text-center " name='mark_model' 
                                             value={formData.mark_model} onChange={handleChange}>Modelo</p>
-                                            <p className="border text-center px-2">{formData.mark_model}</p>
+                                            <p className="border text-center px-2 description">{formData.mark_model}</p>
                                         </div>
 
                                         <div className="col-sm-6">
                                             <p  className="text text-center" name='transmission' 
                                             value={formData.transmission} onChange={handleChange}>Transmisión</p>
-                                            <p className="border text-center px-2">{formData.transmission}</p>
+                                            <p className="border text-center px-2 description">{formData.transmission}</p>
                                         </div>
                                     </div> 
 
@@ -118,7 +119,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                             <p className="text " name='images' 
                                             value={formData.images} onChange={handleChange}>Imagenes</p>
                                             <div className="d-flex h-auto">
-                                                <p className="border p-2">{formData.images}</p>
+                                                <p className="border p-2 description">{formData.images}</p>
                                             </div>
                                             
                                         </div>
@@ -128,7 +129,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                                             <p  className="text" name='description' 
                                             value={formData.description} onChange={handleChange}>Descripción</p>
                                             <div >
-                                                <p className="border p-2">{formData.description}</p>
+                                                <p className="border p-2 description">{formData.description}</p>
                                             </div>
                                         </div>
                                     </div> 
@@ -139,7 +140,7 @@ const ProductDetails = ({closeProductDetailsModal, isOpenProductDetailsModal, da
                             <div className="row tabla mt-2">
                                 <div className="col table-responsive">
                                     <section className="mt-3">
-                                        <h4 className="mb-4">Listado de Cotizaciones</h4>
+                                        <h3 className="mb-4 h4">Listado de Cotizaciones</h3>
                                         <table className="table border ">
                                             <thead className="table-light">
                                                 <tr>

@@ -45,7 +45,7 @@ const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModa
   return ( 
     <>
         <div className="row tabla">
-            <div className="col table-responsive">
+            <div className="col table-responsive" style={{padding: 0}}>
             <table className={darkMode ? `table dark` : `table light`}>
                 <thead className="table-light">
                     <tr>
@@ -57,8 +57,6 @@ const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModa
                         <th scope="col">Precio</th>
                         <th scope="col">% Ganancia</th>
                         <th scope="col">Stock</th>
-                        <th scope="col">Imagenes</th>
-                        <th scope="col">Descripción</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -76,8 +74,6 @@ const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModa
                                 <td>{product.price}</td>
                                 <td>{product.profit}</td>
                                 <td>{product.stock}</td>
-                                <td>{product.images}</td>
-                                <td>{product.description}</td>
                                 <td>
                                     <Button className={"btn btn-success m-1"} text={<i className="fa-solid fa-pen"></i>} onClick={handleClick} item={product}/>
 

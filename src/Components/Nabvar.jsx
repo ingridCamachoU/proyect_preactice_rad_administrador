@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
-import logo from '../img/logo.jpeg';
 import { Link } from "react-router-dom";
 import { DarkModeContext } from '../Context/DarkModeContext';
 import moon from '../img/Moons.png';
 import sun from '../img/Sun.png';
+import logo from '../img/logo.png';
 
 const Nabvar = () => {
 
@@ -17,57 +17,68 @@ const Nabvar = () => {
     }
     const [isOpenToggle, setOpenToggle] = useState(false);
   return (
-        <nav className="navbar bg-body-tertiary d-flex">
-            <div className="container-fluid d-flex">
-                <div className="d-flex ContLogo">
-                    <div className='contenidoLogo'>
-                        <img className="img-fluid logo mx-2" src={logo} alt="Logo"/>
-                    </div>
-                    <div className="d-flex flex-column justify-content-end user">
-                        <h4>William</h4>
-                        <h6>Administrador</h6>
-                    </div>
+        <nav className="navbar">
+            
+            <div className={darkMode ? `container-fluid dark` : `container-fluid light`}>
+                
+            <form className="searchForm" role="search">
+                <input className="form-control me-2 
+                search"  type="search" placeholder="Search"/>
+            
+                <div className={darkMode ? `nav-items dark ${isOpenToggle &&"openToggle" }`: `nav-items light ${isOpenToggle &&"openToggle" }` }>
+
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <div className='ContLogo'>
+                            <img className="img-fluid logo" src={logo} alt="Logo"/>
+                        </div>
+
+                        <div className="user">
+                            <h6>William</h6>
+                        </div>
+
+                        <li class="nav-item">
+                            <Link to='/IndexUser' className="nav-link"   onClick={user}>Clientes</Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link to='/IndexOthers' className="nav-link"   onClick={user}>Otros</Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link to='/OrdersData' className="nav-link"  onClick={user}>Pedidos</Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link to='/IndexProd' className="nav-link"  onClick={user}>Productos</Link>
+                        </li>
+
+                        <li class="nav-item"> 
+                            <Link to='/IndexProv' className="nav-link" onClick={user}>Provedores</Link>   
+                        </li>
+                    </ul>
+                </div>    
+
+                <div className="btn btn-link align-items-center toogleDark">
+                    <img src={darkMode ? 
+                    (sun) : (moon)} alt="Lightswitch on" onClick={handleClick}/>          
+                </div >
+
+                <span className='hr'></span>
+                
+                <div className="logout">
+                    <i class="fa-solid fa-right-from-bracket logout"></i>
                 </div>
-                <form className="search" role="search">
-                    <input className="form-control me-2 
-                    search"  type="search" placeholder="Search"/>
 
-                    <div className={`nav-items ${isOpenToggle &&"openToggle" }`}>
-                        <ul>
-                            <li>
-                                <Link to='/IndexUser' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Clientes</Link>
-                            </li>
+                <span className='hr'></span>
+                
+                <div className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
-                            <li>
-                                <Link to='/IndexOthers' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Otros</Link>
-                            </li>
-
-                            <li>
-                                <Link to='/OrdersData' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Pedidos</Link>
-                            </li>
-
-                            <li>
-                                <Link to='/IndexProd' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Productos</Link>
-                            </li>
-
-                            <li>
-                                <Link to='/IndexProv' className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>Provedores</Link>   
-                            </li>
-                        </ul>
-                    </div>    
-
-                    <div className={`toggler ${isOpenToggle &&"openToggle" }`} onClick={user}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                        
-                    <div className="btn btn-link align-items-center toogleDark">
-                        <img src={darkMode ? 
-                        (sun) : (moon)} alt="Lightswitch on" onClick={handleClick}/>          
-                    </div >
-
-                </form>         
+            </form>         
             </div>     
         </nav>
     )

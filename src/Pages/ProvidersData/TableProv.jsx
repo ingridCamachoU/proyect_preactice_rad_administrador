@@ -39,7 +39,7 @@ const TableProv = ({data, setEditData, deleteProv,  openModal, setTitle}) => {
   return ( 
     <>
         <div className="row tabla">
-            <div className="col table-responsive">
+            <div className="col table-responsive" style={{padding: 0}}>
                 <table className={darkMode ? `table dark` : `table light`}>
                     <thead className="table-light">
                         <tr>

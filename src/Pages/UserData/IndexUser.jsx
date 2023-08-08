@@ -32,7 +32,7 @@ const IndexUser = () => {
     return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
             <div className="nav-contenedor">
-                    <h1 className="text-center">LISTA DE CLIENTES</h1>  
+                    <h1 className="text-center">Lista de Clientes</h1>  
             </div>
             <TableUser  dataQ={dataQ} />
         </section>

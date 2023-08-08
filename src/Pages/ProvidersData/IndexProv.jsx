@@ -133,7 +133,7 @@ const IndexProv = () => {
  
   return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
-            <NabvarTitle title={"LISTA DE PROVEEDORES"} onClick={open}/>
+            <NabvarTitle title={"Lista de Proveedores"} onClick={open}/>
 
             <FormProv isOpen={isOpen} closeModal={closeModal} addData={addData} editData={editData} editPRov={editPRov} title={title}/> 
 

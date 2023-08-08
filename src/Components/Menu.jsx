@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { DarkModeContext } from "../Context/DarkModeContext";
+import logo from '../img/logo.png';
 
 const Menu = () => {
 
@@ -8,7 +9,16 @@ const Menu = () => {
 
   return (
     <nav className={darkMode ? `menu dark` : `menu light`}>
+        
         <ul className="d-flex flex-column items">
+            <div className='ContLogo'>
+                <img className="img-fluid logo" src={logo} alt="Logo"/>
+            </div>
+
+            <div className="user">
+                <h5>William</h5>
+            </div>
+
             <li>
                 <Link to='/IndexUser' className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-user"></i>Clientes</Link>
             </li>
