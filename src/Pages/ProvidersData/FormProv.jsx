@@ -2,20 +2,20 @@ import { useEffect, useState} from "react";
 import { useForm } from "../../hooks/useForm";
 import Button from '../../Components/Button';
 
-const FormProv = ({addData, editData, editPRov, isOpen, closeModal, title}) => {
-
-    const initialForm= {    
+const initialForm = {    
     "nit": "",
     "name": "",
     "contact": "",
     "email": ""
-    };
+};
+
+const FormProv = ({addData, editData, editPRov, isOpen, closeModal, title}) => {
 
     const [formData, handleChange, handleReset, setFormData] = useForm (initialForm);
 
     const [errors, setErrors] = useState({});
 
-    const onValidate = (formData)=>{
+    const onValidate = (formData) => {
         let errors = {};
         let regexNit =  /^[0-9]+$/;
         let regexName = /^([0-9-A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]){2,20}$/;
@@ -49,7 +49,7 @@ const FormProv = ({addData, editData, editPRov, isOpen, closeModal, title}) => {
         return errors;
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if( editData !== null){
             setFormData(editData);
         } else{
@@ -60,7 +60,7 @@ const FormProv = ({addData, editData, editPRov, isOpen, closeModal, title}) => {
     const handleSubmit = (e)=>{
         e.preventDefault();
 
-        const err= onValidate(formData);
+        const err = onValidate(formData);
         setErrors(err)
 
         if (Object.keys(err).length === 0){
@@ -82,9 +82,9 @@ const FormProv = ({addData, editData, editPRov, isOpen, closeModal, title}) => {
         }
     };
 
-    const handleModalClick= e => e.stopPropagation();
+    const handleModalClick = e => e.stopPropagation();
 
-    const close=()=>{
+    const close = () => {
         closeModal();
         handleReset();
     };

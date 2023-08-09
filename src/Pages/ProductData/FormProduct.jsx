@@ -167,7 +167,7 @@ const FormProduct = ({addProduct, isOpenModalProduct, closeModalCreateProduct, d
                             <div className="row g-3 mt-4">
                                 <div className="col-sm-6">
                                     <label className="form-label">Modelo</label>
-                                    <select className="form-control" name="mark_model" onChange={handleChange} value={formData.mark_model} required>
+                                    <select className="form-control" name="mark_model" onChange={handleChange} value={formData.mark_model}>
                                         <option ></option>
                                         {datasModels.map(mark_model => (
                                             <option key={mark_model.id} value={mark_model.id} >{mark_model.name} ({mark_model.mark.name})</option>

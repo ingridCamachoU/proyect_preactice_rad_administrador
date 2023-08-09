@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import Button from "../../Components/Button";
 
-const FormCategoria = ({addCategorie, isOpenCategorie, closeModalCategorie,editCategorie, title, editDataCategorie}) => {
+const initialForm = {
+    "name": "",
+};
 
-    const initialForm ={
-        "name": "",
-    };
+const FormCategoria = ({addCategorie, isOpenCategorie, closeModalCategorie,editCategorie, title, editDataCategorie}) => {
 
     const [formData, handleChange, handleReset, setFormData] = useForm (initialForm);
 
@@ -24,7 +24,7 @@ const FormCategoria = ({addCategorie, isOpenCategorie, closeModalCategorie,editC
         return errors;
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         if( editDataCategorie !== null){
             setFormData(editDataCategorie);
         } else{
@@ -32,7 +32,7 @@ const FormCategoria = ({addCategorie, isOpenCategorie, closeModalCategorie,editC
         }
     },[editDataCategorie]);
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         const err= onValidate(formData);
@@ -57,7 +57,7 @@ const FormCategoria = ({addCategorie, isOpenCategorie, closeModalCategorie,editC
             }
     };
     
-    const handleModalClick= e => e.stopPropagation();
+    const handleModalClick = e => e.stopPropagation();
 
     const close=()=>{
         handleReset();

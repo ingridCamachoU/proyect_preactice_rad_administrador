@@ -3,20 +3,20 @@ import { useForm } from "../../hooks/useForm";
 import Swal from 'sweetalert2';
 import Button from "../../Components/Button";
 
+const initialForm ={
+    "code": "",
+    "name": "",
+    "description": "",
+    "price": "",
+    "stock": "",
+    "profit": "30",
+    "category": "",
+    "transmission": "",
+    "mark_model":"",
+    "images": [],
+};
+    
 const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOpenModalEditProduct, closeModalEditProduct,openModalCreateQuotation, datasQuotation, deletequotation, datasModels, datasCategories}) => {
-
-    const initialForm ={
-        "code": "",
-        "name": "",
-        "description": "",
-        "price": "",
-        "stock": "",
-        "profit": "30",
-        "category": "",
-        "transmission": "",
-        "mark_model":"",
-        "images": [],
-        };
 
     const [formData, handleChange, handleReset, setFormData] = useForm (initialForm);
   
@@ -99,7 +99,6 @@ const FormEditProduct = ({editDataProduct, editProduct, setEditDataProduct, isOp
         }else{
             setErrors(err);
         }
-
     }
 
     const handleModalClick= e => e.stopPropagation();

@@ -12,6 +12,7 @@ import NabvarTitle from "../../Components/NabvarTitle";
 
 const IndexProd = () => {
     
+    const [search, setSearch] = useState('');
     const [datasProduct, setDatasProduct] = useState([]);
     const [datasProvider, setDatasProvider] = useState([]);
     const [datasQuotation, setDatasQuotation] = useState([]);
@@ -22,14 +23,19 @@ const IndexProd = () => {
 
     const {darkMode} = useContext(DarkModeContext);
 
-    const urlProduct = `${process.env.REACT_APP_BASE_URL_}api/v1/products/`;
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+    };
 
+    const urlProduct = `${process.env.REACT_APP_BASE_URL_}api/v1/products/`;
+    const urlProducts = `${process.env.REACT_APP_BASE_URL_}api/v1/products/?search=${search}`;
+    
     /* Load product Data*/    
   const loadDatasProduct = async () => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: urlProduct,
+            url: urlProducts,
             headers: { },
             data : datasProduct
         };
@@ -59,7 +65,7 @@ const IndexProd = () => {
         
     useEffect(() => {
         loadDatasProduct();
-    }, []);
+    },[urlProducts]);
 
      /* Create new product*/   
     const addProduct = async (formData) => {
@@ -173,7 +179,7 @@ const IndexProd = () => {
 
     useEffect(() => {
         loadDatasProvider();
-    }, []);
+    },[]);
 
     /* Load Quotation Data */   
     const  loadDatasQuotation= async(product)=>{
@@ -196,7 +202,7 @@ const IndexProd = () => {
      /* Create new Quotation*/   
      const addDataQuotation = async (formData) => {
         console.log(formData)
-        let id= formData.product;
+        let id = formData.product;
         let data = JSON.stringify(formData);
         let config = {
             method: "post",
@@ -272,7 +278,7 @@ const IndexProd = () => {
 
     useEffect(() => {
         loadDatasCategories();
-    }, []);
+    },[]);
 
      /* Load Models data*/      
     const loadDatasModels = async () => {
@@ -294,11 +300,14 @@ const IndexProd = () => {
 
     useEffect(() => {
         loadDatasModels();
-    }, []);
+    },[]);
 
     return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
              <NabvarTitle title={"Lista de Productos"} onClick={openModalCreateProduct}/>
+             <div className="contSearch">
+                <input value={search} className="search" type="search" placeholder="Search" onChange={handleSearch}/>
+            </div>
 
             <FormProduct addProduct={addProduct} isOpenModalProduct={isOpenModalProduct} closeModalCreateProduct={closeModalCreateProduct} datasCategories={datasCategories} datasModels={datasModels}/>
 

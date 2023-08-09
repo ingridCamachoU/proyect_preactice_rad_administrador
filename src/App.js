@@ -10,9 +10,9 @@ import IndexProv from "./Pages/ProvidersData/IndexProv";
 import IndexOthers from "./Pages/Others/IndexOthers";
 import { useContext } from 'react';
 import { DarkModeContext } from './Context/DarkModeContext';
+import Footer from './Components/Footer';
 
 function App() {
-
     const {darkMode} = useContext(DarkModeContext)
   return (
       <div className={darkMode ? `body dark` : `body light`}>
@@ -24,14 +24,14 @@ function App() {
                     </header>
                     <Routes>
                         <Route path="/IndexUser" element={<IndexUser/>} />
-                        <Route path="/IndexProd" element={<IndexProd/>} />
+                        <Route path="/IndexProd" element={<IndexProd/>}/>
                         <Route path="/IndexOthers" element={<IndexOthers/>} />
                         <Route path="/IndexProv" element={<IndexProv/>} />
                         <Route path="*" element={<div className={darkMode ? `error dark contenedor` : `error light `}><h1>404</h1> <h2>File not found</h2></div> } />
-                    </Routes>
-                </div>
-                
+                    </Routes>               
+                </div>             
             </div> 
+            <Footer/>     
       </div>
     );
 }   

@@ -60,7 +60,7 @@ const IndexOthers = () => {
 
     useEffect(() => {
         loadDatasCategorie();
-    }, []);
+    },[]);
 
      /* Create new categoria*/   
      const addCategorie = async (formData) => {
@@ -192,7 +192,7 @@ const IndexOthers = () => {
 
     useEffect(() => {
         loadDatasMarks();
-    }, []);
+    },[]);
 
      /* Create new mark*/   
      const addMark = async (formData) => {
@@ -324,7 +324,7 @@ const IndexOthers = () => {
 
     useEffect(() => {
         loadDatasModels();
-    }, []);
+    },[]);
 
     /* Create new model*/   
     const addModel = async (formData) => {

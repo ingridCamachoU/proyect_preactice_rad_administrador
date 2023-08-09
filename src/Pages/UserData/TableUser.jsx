@@ -16,7 +16,7 @@ const TableUser = ({dataQ}) => {
     };
   return (
         <>
-            <div className="row tabla">
+            <div className="row tabla mt-3">
                 <div className="col table-responsive" style={{padding:0}}>
                     <table className={darkMode ? `table dark` : `table light`}>
                         <thead className="table-light">

@@ -69,8 +69,14 @@ const TableProduct = ({datasProduct, setEditDataProduct, deleteProduct, openModa
                                 <td>{product.code}</td>
                                 <td>{product.name}</td>
                                 <td>{product.category.name}</td>
-                                <td>{product.mark_model?.name} ({product.mark_model?.mark?.name})</td>
-                                <td>{product.transmission}</td>
+                                {
+                                    product.mark_model === '' ? <td>--</td> : <td>{product.mark_model?.name} ({product.mark_model?.mark?.name})</td>
+                                }
+                                
+                                {
+                                    product.transmission === '' ? <td>--</td> : <td>{product.transmission}</td>
+                                }
+                                
                                 <td>{product.price}</td>
                                 <td>{product.profit}</td>
                                 <td>{product.stock}</td>

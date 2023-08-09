@@ -7,6 +7,7 @@ import logo from '../img/logo.png';
 
 const Nabvar = () => {
 
+
     const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
     const handleClick = () => {
         toggleDarkMode();
@@ -16,15 +17,15 @@ const Nabvar = () => {
         setOpenToggle(!isOpenToggle)
     }
     const [isOpenToggle, setOpenToggle] = useState(false);
+
+
   return (
         <nav className="navbar">
             
             <div className={darkMode ? `container-fluid dark` : `container-fluid light`}>
                 
             <form className="searchForm" role="search">
-                <input className="form-control me-2 
-                search"  type="search" placeholder="Search"/>
-            
+
                 <div className={darkMode ? `nav-items dark ${isOpenToggle &&"openToggle" }`: `nav-items light ${isOpenToggle &&"openToggle" }` }>
 
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -37,23 +38,23 @@ const Nabvar = () => {
                             <h6>William</h6>
                         </div>
 
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to='/IndexUser' className="nav-link"   onClick={user}>Clientes</Link>
                         </li>
 
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to='/IndexOthers' className="nav-link"   onClick={user}>Otros</Link>
                         </li>
 
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to='/OrdersData' className="nav-link"  onClick={user}>Pedidos</Link>
                         </li>
 
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <Link to='/IndexProd' className="nav-link"  onClick={user}>Productos</Link>
                         </li>
 
-                        <li class="nav-item"> 
+                        <li className="nav-item"> 
                             <Link to='/IndexProv' className="nav-link" onClick={user}>Provedores</Link>   
                         </li>
                     </ul>
@@ -67,7 +68,7 @@ const Nabvar = () => {
                 <span className='hr'></span>
                 
                 <div className="logout">
-                    <i class="fa-solid fa-right-from-bracket logout"></i>
+                    <i className="fa-solid fa-right-from-bracket logout"></i>
                 </div>
 
                 <span className='hr'></span>

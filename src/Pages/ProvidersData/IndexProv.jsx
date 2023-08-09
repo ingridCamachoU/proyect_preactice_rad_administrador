@@ -34,7 +34,7 @@ const IndexProv = () => {
 
     useEffect(() => {
         loadData();
-      }, []);
+      },[]);
       
      /* Create new provider*/   
     const addData = async (formData) => {
@@ -59,7 +59,7 @@ const IndexProv = () => {
             });
         } catch (error) {
             console.log(error);
-            let erorCodigo= (error.response.data.code);
+            let erorCodigo = (error.response.data.code);
             Swal.fire({
                 text: erorCodigo,
                 icon: 'error',
@@ -70,7 +70,7 @@ const IndexProv = () => {
     };
     
      /*Edit provider*/  
-    const editPRov= async (formData) =>{
+    const editPRov = async (formData) =>{
         let data = JSON.stringify(formData);
           let config = {
             method: 'put',

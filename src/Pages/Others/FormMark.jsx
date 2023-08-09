@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import Button from "../../Components/Button";
 
+const initialForm = {
+    "name": "",
+};
+
 
 const FormMark = ({addMark, isOpenMark, closeModalMark,editMark, title, editDataMark}) => {
 
-    const initialForm ={
-        "name": "",
-    };
 
     const [formData, handleChange, handleReset, setFormData] = useForm (initialForm);
 
@@ -33,7 +34,7 @@ const FormMark = ({addMark, isOpenMark, closeModalMark,editMark, title, editData
         }
     },[editDataMark]);
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         const err= onValidate(formData);
@@ -60,7 +61,7 @@ const FormMark = ({addMark, isOpenMark, closeModalMark,editMark, title, editData
     
     const handleModalClick= e => e.stopPropagation();
 
-    const close=()=>{
+    const close = () => {
         handleReset();
         closeModalMark(); 
         setFormData(initialForm);

@@ -25,9 +25,7 @@ const IndexUser = () => {
 
     useEffect(() => {
         loadDataQ();
-    }, []);
-
-   
+    },[]);
 
     return (
         <section className={darkMode ? `contenedor dark` : `contenedor light`}>
