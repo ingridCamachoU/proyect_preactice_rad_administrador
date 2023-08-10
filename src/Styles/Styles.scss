@@ -133,6 +133,58 @@
     }
 }
 
+.login{
+   
+    background: linear-gradient( rgba(183, 224, 255, 0.18) 76.82%, rgba(176, 218, 255, 0.33) 95.23%),
+    url('../img/backgroundLogin.png') no-repeat center center;
+    background-size: cover;background-attachment: fixed;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: end;
+    display: flex;
+
+    .form{
+        min-height: 100vh;
+        background: #f8feff6e;
+        right: 0;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        padding: 3em;
+        padding-left: 4em;
+
+        .formLogin{
+            display: block;
+            box-shadow: var(--box-shadow-light);
+            width: 400px;
+            padding: 3em;
+            flex-wrap: wrap;
+        }
+        .contButton{
+            text-align: end;
+            width: 100%;
+        }
+
+        .inputLogin{
+            width: 300px;
+            margin-bottom: 2em;
+        }
+        .btnLogin{
+            background: var(--text-color-light);
+            box-shadow: 7px 7px 12px 0 #4556dc44;
+            border: none;
+            color: var(--color--white);
+            font-weight: var(--font-medium);
+            border-radius: 5px;
+            padding: 5px 6px 6px 5px;
+            &:hover{
+                background: #1e61fc;
+                transform: translateY(-2px);
+                transition: 0.5s;
+            }
+        }
+    }
+}
 footer{
     position: fixed;
     left: 0px;
@@ -513,6 +565,7 @@ ul{
 .nav-items{
     display: none;
 }
+
 .toggler{
     display: none;
 }
@@ -657,6 +710,16 @@ ul{
     .searchForm{
         width: 100%;
     }
+
+    .login{
+        .form{
+            width: 100%;
+
+            .inputLogin{
+                width: 300px;
+            }
+        }
+    }
 }
 
 @media(max-width:400px){
@@ -672,7 +735,20 @@ ul{
                 margin-right: var(--mb-1);
             }
         }
-    
+    }
+
+    .login{
+        margin: 0;
+        padding: 0;
+        .form{
+            width: 100%;
+            .formLogin{
+                width: 300px;
+            }
+            .inputLogin{
+                width: 200px;
+            }
+        }
     }
 
     .modal-container{

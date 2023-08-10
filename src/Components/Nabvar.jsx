@@ -5,9 +5,8 @@ import moon from '../img/Moons.png';
 import sun from '../img/Sun.png';
 import logo from '../img/logo.png';
 
-const Nabvar = () => {
-
-
+const Nabvar = ({propUser, setLogin}) => {
+    const [isOpenToggle, setOpenToggle] = useState(false);
     const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
     const handleClick = () => {
         toggleDarkMode();
@@ -16,9 +15,11 @@ const Nabvar = () => {
     const user= ()=>{
         setOpenToggle(!isOpenToggle)
     }
-    const [isOpenToggle, setOpenToggle] = useState(false);
 
-
+    const signOff = () =>{
+        setLogin("false");
+        document.getElementById("formLogin").style.display="block"
+    }
   return (
         <nav className="navbar">
             
@@ -35,7 +36,7 @@ const Nabvar = () => {
                         </div>
 
                         <div className="user">
-                            <h6>William</h6>
+                            <h6>{propUser}</h6>
                         </div>
 
                         <li className="nav-item">
@@ -67,7 +68,7 @@ const Nabvar = () => {
 
                 <span className='hr'></span>
                 
-                <div className="logout">
+                <div className="logout" onClick={signOff}>
                     <i className="fa-solid fa-right-from-bracket logout"></i>
                 </div>
 

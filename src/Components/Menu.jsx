@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import logo from '../img/logo.png';
+import { Link } from "react-router-dom";
 
-const Menu = () => {
+const Menu = ({propUser}) => {
 
     const {darkMode} = useContext(DarkModeContext);
 
   return (
+
     <nav className={darkMode ? `menu dark` : `menu light`}>
         
         <ul className="d-flex flex-column items">
@@ -16,7 +17,7 @@ const Menu = () => {
             </div>
 
             <div className="user">
-                <h5>William</h5>
+                <h5>{propUser}</h5>
             </div>
 
             <li>
@@ -40,6 +41,7 @@ const Menu = () => {
             </li>
         </ul>
     </nav>
+
     );
 }
 
