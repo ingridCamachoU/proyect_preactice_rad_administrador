@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { DarkModeContext } from "../Context/DarkModeContext";
 import logo from '../img/logo.png';
-import { Link } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
-const Menu = ({propUser}) => {
+const Menu = () => {
 
     const {darkMode} = useContext(DarkModeContext);
 
@@ -17,28 +17,25 @@ const Menu = ({propUser}) => {
             </div>
 
             <div className="user">
-                <h5>{propUser}</h5>
+                <h5>Administrador</h5>
             </div>
 
             <li>
-                <Link to='/IndexUser' className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-user"></i>Clientes</Link>
+                <NavLink to='user' className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-user"></i>Clientes</NavLink>
             </li>
 
             <li>
-                <Link to='/IndexOthers'className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-list"></i>Otros</Link>
+                <NavLink to='others'className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-list"></i>Otros</NavLink>
             </li>
             
             <li>
-                <Link to='/OrdersData' className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-cart-plus"></i>Pedidos</Link>
+                <NavLink to='' className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-boxes-stacked"></i>Productos</NavLink>
             </li>
 
             <li>
-                <Link to='/IndexProd' className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-boxes-stacked"></i>Productos</Link>
+                <NavLink to='provider' className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-truck-field"></i>Provedores</NavLink>    
             </li>
 
-            <li>
-                <Link to='/IndexProv' className={darkMode ? `item dark` : `item light`}><i className="fa-solid fa-truck-field"></i>Provedores</Link>    
-            </li>
         </ul>
     </nav>
 

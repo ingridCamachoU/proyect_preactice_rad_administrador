@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { DarkModeContext } from '../Context/DarkModeContext';
 import moon from '../img/Moons.png';
 import sun from '../img/Sun.png';
 import logo from '../img/logo.png';
+import { logout } from '../config/firebase';
 
-const Nabvar = ({propUser, setLogin}) => {
+const Nabvar = () => {
     const [isOpenToggle, setOpenToggle] = useState(false);
     const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
     const handleClick = () => {
@@ -16,9 +17,12 @@ const Nabvar = ({propUser, setLogin}) => {
         setOpenToggle(!isOpenToggle)
     }
 
-    const signOff = () =>{
-        setLogin("false");
-        document.getElementById("formLogin").style.display="block"
+    const handleLogout = async() =>{
+        try {
+            await logout()
+        } catch (error) {
+            console.log(error)
+        }
     }
   return (
         <nav className="navbar">
@@ -36,27 +40,23 @@ const Nabvar = ({propUser, setLogin}) => {
                         </div>
 
                         <div className="user">
-                            <h6>{propUser}</h6>
+                            <h6>Administrador</h6>
                         </div>
 
                         <li className="nav-item">
-                            <Link to='/IndexUser' className="nav-link"   onClick={user}>Clientes</Link>
+                            <NavLink to='user' className="nav-link"   onClick={user}>Clientes</NavLink>
                         </li>
 
                         <li className="nav-item">
-                            <Link to='/IndexOthers' className="nav-link"   onClick={user}>Otros</Link>
+                            <NavLink to='others' className="nav-link"   onClick={user}>Otros</NavLink>
                         </li>
 
                         <li className="nav-item">
-                            <Link to='/OrdersData' className="nav-link"  onClick={user}>Pedidos</Link>
-                        </li>
-
-                        <li className="nav-item">
-                            <Link to='/IndexProd' className="nav-link"  onClick={user}>Productos</Link>
+                            <NavLink to='' className="nav-link"  onClick={user}>Productos</NavLink>
                         </li>
 
                         <li className="nav-item"> 
-                            <Link to='/IndexProv' className="nav-link" onClick={user}>Provedores</Link>   
+                            <NavLink to='provider' className="nav-link" onClick={user}>Provedores</NavLink>   
                         </li>
                     </ul>
                 </div>    
@@ -68,7 +68,7 @@ const Nabvar = ({propUser, setLogin}) => {
 
                 <span className='hr'></span>
                 
-                <div className="logout" onClick={signOff}>
+                <div className="logout" onClick={handleLogout}>
                     <i className="fa-solid fa-right-from-bracket logout"></i>
                 </div>
 
